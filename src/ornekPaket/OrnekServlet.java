@@ -14,7 +14,7 @@ public class OrnekServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter pw = resp.getWriter();
 		
-		pw.print("<h1>Hi EveryOne! Yükleme Testi</h1>");
+		pw.print("<h1>Hi EveryOne!</h1>");
 		
 	}
 
