@@ -13,8 +13,8 @@ public class OrnekServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter pw = resp.getWriter();
-		
-		pw.print("<h1>Hi EveryOne!</h1>"); //yükleme testi
+		// 8.5 da kalmýþya
+		pw.print("<h1>Hi EveryOne! Test</h1>"); //yükleme testi
 		
 	}
 
