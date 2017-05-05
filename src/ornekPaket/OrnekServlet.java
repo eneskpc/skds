@@ -26,7 +26,7 @@ public class OrnekServlet extends HttpServlet {
 		talepler.add(new Request("Laravel"));
 		
 		req.setAttribute("talepler", talepler);
-		
+		//test
 		//dispatcher nesnesini servlet context objesinden oluþturuyoruz.
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/test.jsp");
 		dispatcher.forward(req, resp);
