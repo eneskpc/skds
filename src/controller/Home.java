@@ -28,7 +28,7 @@ public class Home extends HttpServlet {
 		talepler.add(new Request("Laravel"));
 		
 		request.setAttribute("talepler", talepler);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/test.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/Home.jsp");
 		dispatcher.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
