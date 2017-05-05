@@ -53,6 +53,7 @@
                     </form>
                 </div>
             </div>
+            <% %>
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <div class="media">
