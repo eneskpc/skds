@@ -16,8 +16,11 @@ public class OrnekServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		
 		ArrayList<Request> talepler = new ArrayList<>();
+		PrintWriter pw = resp.getWriter();
+		pw.print("<h1>Bir Test Ekleyip Çýkacaktým</h1>"); //yükleme testi
 		
 		talepler.add(new Request("Hello"));
 		talepler.add(new Request("Naber"));
