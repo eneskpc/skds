@@ -5,12 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQL {
+	
+	private static MySQL mysql = new MySQL();
+	
 	Connection conn = null;
 	final String USER = "username";
 	final String PASS = "password";
 	final String DB_URL = "jdbc:mysql://localhost/EMP";
 
-	public MySQL() {
+	private MySQL() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -22,4 +25,9 @@ public class MySQL {
 			e.printStackTrace();
 		}
 	}
+	
+	public static MySQL getConnection() {
+		return mysql;
+	}
+	
 }
