@@ -8,26 +8,22 @@ public class MySQL {
 	
 	private static MySQL mysql = new MySQL();
 	
-	Connection conn = null;
-	final String USER = "username";
-	final String PASS = "password";
-	final String DB_URL = "jdbc:mysql://localhost/EMP";
+	private Connection conn = null;
+	private final String USER = "root";
+	private final String PASS = "";
+	private final String DB_URL = "jdbc:mysql://localhost/skds?useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	private MySQL() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static MySQL getConnection() {
-		return mysql;
+	public static Connection getConnection() {
+		return mysql.conn;
 	}
 	
 }

@@ -2,15 +2,21 @@ package model;
 
 public class Customer extends User {
 	
+	private String name;
 	private String gender;
 	private String homeCity;
 	private int birthYear;
 	
-	public Customer(int id, String name, String email, String gender, String homeCity, int birthYear) {
-		super(id, name, email);
-		this.gender = gender;
-		this.homeCity = homeCity;
-		this.birthYear = birthYear;
+	public Customer() {
+		
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getGender() {
