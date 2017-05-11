@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
-<body>
+<body ng-app="homeModule" ng-controller="homeController">
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
@@ -26,7 +27,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">SKDS</a>
-				<p class="navbar-text">Sorunlarınız Sorunlarımızdır{{test}}</p>
+				<p class="navbar-text">Sorunlarınız Sorunlarımızdır</p>
 			</div>
 
 			<div class="collapse navbar-collapse"
@@ -95,26 +96,7 @@
 						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
 					</div>
 				</div>
-				<div class="panel panel-primary">
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<img class="media-object" src="assets/images/indir.svg"
-									alt="Şirket Adı">
-							</div>
-							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
-					</div>
+				
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -172,13 +154,14 @@
 			<div class="modal-content"></div>
 		</div>
 	</div>
+	
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/angular.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
 	<script src="/assets/js/validation/jquery.validate.min.js"></script>
 	<script src="/assets/js/validation/additional-methods.min.js"></script>
 	<script src="/assets/js/validation/messages_tr.min.js"></script>
-	<script src="/assets/js/script.js"></script>
 	<script src="/assets/js/angularScripts.js"></script>
+	<script src="/assets/js/script.js"></script>
 </body>
 </html>

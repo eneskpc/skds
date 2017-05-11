@@ -7,6 +7,7 @@ public class Customer extends User {
 	private String homeCity;
 	private int birthYear;
 	
+	
 	public Customer() {
 		
 	}
