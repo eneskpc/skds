@@ -1,4 +1,4 @@
-function footerMinLocation() {
+﻿function footerMinLocation() {
     var dHeight = $(document).height();
     var bHeight = $("body").height();
     $('#footer').css("margin-top", (dHeight - bHeight) + "px");
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 keyboard: false,
                 backdrop: 'static'
             });
-        $.ajax("singup.php").done(function (response) {
+        $.ajax("/app/register").done(function (response) {
             $('#mainModal .modal-content').html(response);
         });
     });

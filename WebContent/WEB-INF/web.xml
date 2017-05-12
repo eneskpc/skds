@@ -13,6 +13,10 @@
 		<servlet-name>login</servlet-name>
 		<jsp-file>/view/Login.jsp</jsp-file>
 	</servlet>
+	<servlet>
+		<servlet-name>register</servlet-name>
+		<jsp-file>/view/Register.jsp</jsp-file>
+	</servlet>
 
 	<servlet>
 		<servlet-name>getRequestList</servlet-name>
@@ -25,7 +29,7 @@
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- Services -->
 	<servlet-mapping>
 		<servlet-name>getRequestList</servlet-name>
@@ -35,5 +39,9 @@
 		<servlet-name>login</servlet-name>
 		<url-pattern>/app/login</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>register</servlet-name>
+		<url-pattern>/app/register</url-pattern>
+	</servlet-mapping>
+
 </web-app>

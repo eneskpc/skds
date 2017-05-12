@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i>
     </button>
