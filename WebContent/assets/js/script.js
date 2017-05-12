@@ -40,7 +40,7 @@ $(document).ready(function () {
                 keyboard: false,
                 backdrop: 'static'
             });
-        $.ajax("createRequest.php").done(function (response) {
+        $.ajax("/app/createRequest").done(function (response) {
             $('#mainModal .modal-content').html(response);
         });
     });
