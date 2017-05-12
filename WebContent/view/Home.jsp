@@ -22,9 +22,10 @@
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">SKDS</a>
 				<p class="navbar-text">Sorunlarınız Sorunlarımızdır</p>
@@ -96,8 +97,7 @@
 						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
 					</div>
 				</div>
-				
-				</div>
+
 			</div>
 			<div class="col-md-3">
 				<div class="panel panel-primary">
@@ -154,7 +154,7 @@
 			<div class="modal-content"></div>
 		</div>
 	</div>
-	
+
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/angular.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
