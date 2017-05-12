@@ -17,7 +17,7 @@ $(document).ready(function () {
                 keyboard: false,
                 backdrop: 'static'
             });
-        $.ajax("login.php").done(function (response) {
+        $.ajax("Login").done(function (response) {
             $('#mainModal .modal-content').html(response);
         });
     });
