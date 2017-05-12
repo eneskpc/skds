@@ -15,19 +15,18 @@ import model.Request;
 
 public class GetRequestList extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2672378152867744328L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		try {
+			resp.setCharacterEncoding("UTF-8");
 			ArrayList<Request> requestList = Request.getRequestList();
 			String json = new GsonBuilder().create().toJson(requestList);
 			resp.getWriter().write(json);
 		} catch (SQLException e) {
 			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			e.printStackTrace();
 		}
 		
 	}

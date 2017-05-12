@@ -79,10 +79,10 @@ public class Request {
 		
 		while(result.next()) {
 			Request request = new Request();
-			request.setId(result.getInt("resultId"));
+			request.setId(result.getInt("requestId"));
 			request.setTitle(result.getString("title"));
 			request.setDate(result.getDate("date"));
-			request.setDetail("detail");
+			request.setDetail(result.getString("detail"));
 			Company company = new Company();
 			company.setId(result.getInt("companyId"));
 			company.setName(result.getString("companyName"));
@@ -100,5 +100,7 @@ public class Request {
 		return list;
 
 	}
-
+	
+	
+	
 }

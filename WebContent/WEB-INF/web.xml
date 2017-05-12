@@ -14,4 +14,16 @@
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>getRequestList</servlet-name>
+		<servlet-class>controller.GetRequestList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getRequestList</servlet-name>
+		<url-pattern>/app/getRequestList</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 </web-app>

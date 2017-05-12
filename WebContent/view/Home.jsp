@@ -54,7 +54,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" ng-repeat="request in requestList">
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
@@ -62,38 +62,15 @@
 									alt="Şirket Adı">
 							</div>
 							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
+								<a class="media-heading" ng-bind="request.title"></a>
+								<p ng-bind="request.detail"></p>
 							</div>
 						</div>
 					</div>
 					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
-					</div>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<img class="media-object" src="assets/images/indir.svg"
-									alt="Şirket Adı">
-							</div>
-							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
+						<i class="fa fa-user"></i>&nbsp;<span ng-bind="request.customer.name"></span>&nbsp;&nbsp;
+						<i class="fa fa-clock-o"></i>&nbsp;<span ng-bind="request.date"></span>&nbsp;&nbsp;
+						<i class="fa fa-caret-right"></i>&nbsp;<span ng-bind="request.company.name"></span>
 					</div>
 				</div>
 
