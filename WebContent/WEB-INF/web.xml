@@ -17,9 +17,37 @@
 		<servlet-name>register</servlet-name>
 		<jsp-file>/view/Register.jsp</jsp-file>
 	</servlet>
-		<servlet>
+	<servlet>
 		<servlet-name>createRequest</servlet-name>
 		<jsp-file>/view/CreateRequest.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>addPersonal</servlet-name>
+		<jsp-file>/view/AddPersonal.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>companyManager</servlet-name>
+		<jsp-file>/view/CompanyManager.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>companySettings</servlet-name>
+		<jsp-file>/view/CompanySettings.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>customerManager</servlet-name>
+		<jsp-file>/view/CustomerManager.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>customerSettings</servlet-name>
+		<jsp-file>/view/CustomerSettings.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>personalManager</servlet-name>
+		<jsp-file>/view/PersonalManager.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>personalSettings</servlet-name>
+		<jsp-file>/view/PersonalSettings.jsp</jsp-file>
 	</servlet>
 
 	<servlet>
@@ -28,13 +56,40 @@
 	</servlet>
 
 
-
+	<!-- This is HomePage -->
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
 
-	<!-- Services -->
+	<!-- These Are Normal Pages -->
+	<servlet-mapping>
+		<servlet-name>companyManager</servlet-name>
+		<url-pattern>/companyManager</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>companySettings</servlet-name>
+		<url-pattern>/companySettings</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>customerManager</servlet-name>
+		<url-pattern>/customerManager</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>customerSettings</servlet-name>
+		<url-pattern>/customerSettings</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>personalManager</servlet-name>
+		<url-pattern>/personalManager</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>personalSettings</servlet-name>
+		<url-pattern>/personalSettings</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- These are Ajax Pages -->
 	<servlet-mapping>
 		<servlet-name>getRequestList</servlet-name>
 		<url-pattern>/app/getRequestList</url-pattern>
@@ -47,9 +102,13 @@
 		<servlet-name>register</servlet-name>
 		<url-pattern>/app/register</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>createRequest</servlet-name>
 		<url-pattern>/app/createRequest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>addPersonal</servlet-name>
+		<url-pattern>/app/addPersonal</url-pattern>
 	</servlet-mapping>
 
 </web-app>

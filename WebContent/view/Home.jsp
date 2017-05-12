@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Hoşgeldiniz | Son Kullanıcı Destek Sistemi - Sorunlarınız
 	Sorunlarımızdır</title>
-<link rel="stylesheet" href="<%= request.getRequestURL() %>/assets/css/font-awesome.min.css" />
-<link rel="stylesheet" href="<%= request.getRequestURL() %>/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="<%= request.getRequestURL() %>/assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
 <body ng-app="homeModule" ng-controller="homeController">
@@ -131,13 +131,13 @@
 		</div>
 	</div>
 
-	<script src="<%= request.getRequestURL() %>/assets/js/jquery.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/angular.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/bootstrap.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/validation/jquery.validate.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/validation/additional-methods.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/validation/messages_tr.min.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/angularScripts.js"></script>
-	<script src="<%= request.getRequestURL() %>/assets/js/script.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/validation/jquery.validate.min.js"></script>
+	<script src="assets/js/validation/additional-methods.min.js"></script>
+	<script src="assets/js/validation/messages_tr.min.js"></script>
+	<script src="assets/js/angularScripts.js"></script>
+	<script src="assets/js/script.js"></script>
 </body>
 </html>
