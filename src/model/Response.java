@@ -8,7 +8,7 @@ public class Response {
 	private int userId;
 	
 	public Response() {
-		// TODO Auto-generated constructor stub
+		// // It is for create inheritance
 	}
 	
 	public Response(int id, int previous, String message, int requestId, int userId) {

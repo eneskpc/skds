@@ -14,7 +14,12 @@ import com.google.gson.GsonBuilder;
 import model.Request;
 
 public class GetRequestList extends HttpServlet {
-		
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2672378152867744328L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		try {

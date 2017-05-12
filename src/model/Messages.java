@@ -11,7 +11,7 @@ public class Messages {
 	
 	
 	public Messages() {
-		// TODO Auto-generated constructor stub
+		// It is for create inheritance
 	}
 	
 	
