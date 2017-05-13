@@ -48,13 +48,13 @@
 					<div class="panel-body">
 						<form class="form" action="">
 							<div class="form-group">
-								<input type="search" placeholder="Şikayet veya marka arayın..."
+								<input type="search" placeholder="Şikayet veya marka arayın..." ng-model="searchedText"
 									class="form-control" />
 							</div>
 						</form>
 					</div>
 				</div>
-				<div class="panel panel-primary" ng-repeat="request in requestList">
+				<div class="panel panel-primary" ng-repeat="request in requestList | filter:searchedText">
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">

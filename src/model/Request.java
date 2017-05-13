@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +16,6 @@ public class Request {
 	private Company company;
 	private Customer customer;
 
-
 	public int getId() {
 		return id;
 	}
@@ -23,7 +23,7 @@ public class Request {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -35,7 +35,7 @@ public class Request {
 	public String getDetail() {
 		return detail;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -74,10 +74,10 @@ public class Request {
 				+ "INNER JOIN company ON request.Company_id = request.Company_id";
 
 		Statement statement = MySQL.getConnection().createStatement();
-		
+
 		ResultSet result = statement.executeQuery(sql);
-		
-		while(result.next()) {
+
+		while (result.next()) {
 			Request request = new Request();
 			request.setId(result.getInt("requestId"));
 			request.setTitle(result.getString("title"));
@@ -90,17 +90,34 @@ public class Request {
 			Customer customer = new Customer();
 			customer.setId(result.getInt("customerId"));
 			customer.setName(result.getString("customerName"));
-			
+
 			request.setCompany(company);
 			request.setCustomer(customer);
-			
+
 			list.add(request);
 		}
 
 		return list;
 
 	}
-	
-	
+
+	/**
+	 * Talebi ekler ve veritabanýnda etkilenen satýr sayýsýný döndürür.
+	 * 
+	 * @param request
+	 * @return etkilenenSatýrSayýsý
+	 * @throws SQLException
+	 */
+	public static int createRequest(Request request) throws SQLException {
+		String sql = "INSERT INTO request (title, detail, Company_id, Customer_id) VALUES (?,?,?,?)";
+		PreparedStatement pStatement = MySQL.getConnection().prepareStatement(sql);
+		pStatement.setString(1, request.getTitle());
+		pStatement.setString(2, request.getDetail());
+		pStatement.setInt(3, request.company.getId());
+		pStatement.setInt(4, request.customer.getId());
+
+		return pStatement.executeUpdate();
+	}
+
 	
 }

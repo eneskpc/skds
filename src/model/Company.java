@@ -121,11 +121,8 @@ public class Company extends User {
 
 	public static Company createCompany(Company company) throws SQLException {
 		
-		
-		
-		
-		/*String sql = "INSERT INTO company(name,detail,contactName,contactPhone,imageUrl,approved,User_id)"
-				+ "VALUES(?,?,?,?,?,?,?)";*/
+		String sql = "INSERT INTO company(name,contactName,approved,User_id)"
+				+ "VALUES(?,?,?,?,?,?,?)";
 		
 		
 		return company;
