@@ -198,7 +198,7 @@
 	</div>
 	<div id="footer">
 		<div class="container">
-			&copy; 2017 All rights is <a href="http://nku.edu.tr">NKU</a>.
+			&copy; 2017 All rights is <a href="http://nku.edu.tr">SKDS</a>.
 		</div>
 	</div>
 	<div class="modal fade" id="mainModal" tabindex="-1" role="dialog"

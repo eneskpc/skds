@@ -58,13 +58,4 @@ $(document)
 							$('#mainModal .modal-content').html(response);
 						});
 					});
-
-					/*
-					 * $(document).on('click', '#register', function () { var
-					 * memberTypeForm = $(document).find('#mainModal
-					 * .modal-content .tab-pane.active').attr('id'); if
-					 * (memberTypeForm == "company") {
-					 * $(document).find("#company form").submit(); } else if
-					 * (memberTypeForm == "customer") { alert("naber"); } });
-					 */
 				});
