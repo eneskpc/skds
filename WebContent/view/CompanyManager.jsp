@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -195,9 +194,6 @@
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/validation/jquery.validate.min.js"></script>
-	<script src="assets/js/validation/additional-methods.min.js"></script>
-	<script src="assets/js/validation/messages_tr.min.js"></script>
 	<script src="assets/js/script.js"></script>
 	<script src="assets/js/bootstrap-chat.js"></script>
 </body>

@@ -209,9 +209,6 @@
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/validation/jquery.validate.min.js"></script>
-	<script src="assets/js/validation/additional-methods.min.js"></script>
-	<script src="assets/js/validation/messages_tr.min.js"></script>
 	<script src="assets/js/script.js"></script>
 </body>
 </html>

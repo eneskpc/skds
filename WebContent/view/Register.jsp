@@ -115,11 +115,29 @@
 			},
 			paswordAgain : {
 				required : true,
-				equalTo : "[name=password]"
+				equalTo :  $(document).find("[name=password]")
 			}
 		},
 		submitHandler : function(form) {
-			form.submit();
+			$.ajax({
+				url : "/app/CreateRegisterProcess",
+				type : "POST",
+				data : $(form).serialize(),
+				success : function(response) {
+					console.log(response);
+				}
+			});
 		}
 	});
+	$(document)
+			.find('button#register')
+			.click(
+					function() {
+						if ($(document).find(".tab-pane.active").attr('id') == "company") {
+							$(document).find("#company form").submit();
+						} else if ($(document).find(".tab-pane.active").attr(
+								'id') == "customer") {
+							$(document).find("#customer form").submit();
+						}
+					});
 </script>
