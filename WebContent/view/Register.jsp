@@ -51,8 +51,8 @@
 		</div>
 		<div role="tabpanel" class="tab-pane" id="company">
 			<br />
-			<input type="hidden" name="userType" value="company" />
 			<form class="form">
+			<input type="hidden" name="userType" value="company" />
 				<div class="form-group">
 					<label>Firma Adınız* :</label> <input type="text"
 						name="companyName" class="form-control"
@@ -78,7 +78,7 @@
 				</div>
 				<div class="form-group">
 					<label>Parola (Tekrar)* :</label> <input type="password"
-						name="paswordAgain" class="form-control"
+						name="passwordAgain" class="form-control"
 						placeholder="Yukarıdaki 'Parola' alanı ile aynı olmalıdır."
 						required />
 				</div>

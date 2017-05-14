@@ -21,11 +21,11 @@ public class Company extends User {
 		this.imageUrl = imageUrl;
 		this.approved = approved;
 	}
-	
+
 	public Company() {
-		
+
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -82,12 +82,27 @@ public class Company extends User {
 		this.companyId = companyId;
 	}
 
-	/**
-	 * 
-	 * @param companyId
-	 * @return Company
-	 * @throws SQLException
-	 */
+	public boolean saveCompany() {
+		if (this.saveUser()) {
+			String sql2 = "INSERT INTO company(name,detail,contactName,contactPhone,imageUrl,approved,User_id) VALUES(?,?,?,?,?,'0',?)";
+			PreparedStatement ps2;
+			try {
+				ps2 = MySQL.getConnection().prepareStatement(sql2);
+				ps2.setString(1, this.getName());
+				ps2.setString(2, this.getDetail());
+				ps2.setString(3, this.getContactName());
+				ps2.setString(4, this.getContactPhone());
+				ps2.setString(5, this.getImageUrl());
+				ps2.setInt(6, this.getId());
+				if (ps2.executeUpdate() > 0)
+					return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
 	public static Company getCompany(int userId) throws SQLException {
 		String sql = "SELECT user.id AS userId, user.email, user.password, company.id AS companyId, "
 				+ "company.name, company.detail, company.contactName, company.contactPhone, "
@@ -95,12 +110,12 @@ public class Company extends User {
 				+ "On user.id=company.user_id WHERE user.id = ?";
 		PreparedStatement pStatement = MySQL.getConnection().prepareStatement(sql);
 		pStatement.setInt(1, userId);
-		
+
 		ResultSet result = pStatement.executeQuery();
-		
+
 		Company company = null;
-		
-		while(result.next()) {
+
+		while (result.next()) {
 			company = new Company();
 			company.setId(result.getInt("userId"));
 			company.setEmail(result.getString("email"));
@@ -113,25 +128,7 @@ public class Company extends User {
 			company.setImageUrl(result.getString("imageUrl"));
 			company.setApproved(result.getBoolean("approved"));
 		}
-		
+
 		return company;
 	}
-
-	public static Company createCompany(Company company) throws SQLException {
-		
-		String sql = "INSERT INTO company(name,contactName,approved,User_id)"
-				+ "VALUES(?,?,?,?,?,?,?)";
-		
-		
-		return company;
-	}
-
-	@Override
-	public String toString() {
-		return "Company [name=" + name + ", detail=" + detail + ", contactName=" + contactName + ", contactPhone="
-				+ contactPhone + ", imageUrl=" + imageUrl + ", approved=" + approved + ", companyId=" + companyId + "]";
-	}
-	
-	
-	
 }

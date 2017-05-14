@@ -45,17 +45,22 @@ public class Customer extends User {
 		this.birthYear = birthYear;
 	}
 
-	public boolean saveCustomer() throws SQLException, ClassNotFoundException {
+	public boolean saveCustomer() {
 		if (this.saveUser()) {
 			String sql2 = "INSERT INTO customer(name,gender,birthYear,homeCity,User_id) VALUES(?,?,?,?,?)";
-			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
-			ps2.setString(1, this.getName());
-			ps2.setString(2, this.getGender());
-			ps2.setInt(3, this.getBirthYear());
-			ps2.setInt(4, this.getHomeCity());
-			ps2.setInt(5, this.getId());
-			if (ps2.executeUpdate() > 0)
-				return true;
+			PreparedStatement ps2;
+			try {
+				ps2 = MySQL.getConnection().prepareStatement(sql2);
+				ps2.setString(1, this.getName());
+				ps2.setString(2, this.getGender());
+				ps2.setInt(3, this.getBirthYear());
+				ps2.setInt(4, this.getHomeCity());
+				ps2.setInt(5, this.getId());
+				if (ps2.executeUpdate() > 0)
+					return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}

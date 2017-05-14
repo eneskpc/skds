@@ -54,20 +54,29 @@ public class User {
 		this.type = type;
 	}
 
-	public boolean saveUser() throws SQLException {
+	public boolean saveUser() {
 		String sql = "INSERT INTO user(email,password,type) VALUES(?,?,?)";
-		PreparedStatement ps = MySQL.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, this.getEmail());
-		ps.setString(2, this.getPassword());
-		ps.setInt(3, this.getType());
-		int lastInsertID = 0;
-		if (ps.executeUpdate() > 0) {
-			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next()) {
-				lastInsertID = rs.getInt(1);
+		PreparedStatement ps;
+		try {
+			ps = MySQL.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, this.getEmail());
+			ps.setString(2, this.getPassword());
+			ps.setInt(3, this.getType());
+			int lastInsertID = 0;
+			if (ps.executeUpdate() > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+					lastInsertID = rs.getInt(1);
+				}
+				this.setId(lastInsertID);
+				return true;
 			}
-			this.setId(lastInsertID);
-			return true;
+		} catch (SQLException e) {
+			System.out.println("<div class='alert alert-danger'>"
+					+ "Kullanıcı kayıt işleminde bilinmeyen bir hata oluştu. "
+					+ "Bu <b>hata</b>, veritabanının olağandışı durum biriminde yakalandı. "
+					+ "Bu birimin bildirdiği hata ise :<br/>" + "<b>" + e.getMessage() + "</b>"
+					+ " Üyelik işlemini tekrar deneyin veya site yönetimi le iletişime geçin.<br /></div>");
 		}
 		return false;
 	}
