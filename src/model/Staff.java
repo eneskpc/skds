@@ -1,7 +1,7 @@
 package model;
 
 public class Staff extends User {
-	
+
 	private int companyId;
 
 	public Staff(int companyId) {
@@ -16,7 +16,5 @@ public class Staff extends User {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
-	
-	
-	
+
 }
