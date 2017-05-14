@@ -72,12 +72,34 @@ public class User {
 				return true;
 			}
 		} catch (SQLException e) {
-			System.out.println("<div class='alert alert-danger'>"
-					+ "Kullanıcı kayıt işleminde bilinmeyen bir hata oluştu. "
-					+ "Bu <b>hata</b>, veritabanının olağandışı durum biriminde yakalandı. "
-					+ "Bu birimin bildirdiği hata ise :<br/>" + "<b>" + e.getMessage() + "</b>"
-					+ " Üyelik işlemini tekrar deneyin veya site yönetimi le iletişime geçin.<br /></div>");
+			System.out.println(
+					"<div class='alert alert-danger'>" + "Kullanıcı kayıt işleminde bilinmeyen bir hata oluştu. "
+							+ "Bu <b>hata</b>, veritabanının olağandışı durum biriminde yakalandı. "
+							+ "Bu birimin bildirdiği hata ise :<br/>" + "<b>" + e.getMessage() + "</b>"
+							+ " Üyelik işlemini tekrar deneyin veya site yönetimi le iletişime geçin.<br /></div>");
 		}
 		return false;
+	}
+
+	public static User ValidationUser(String email, String password) {
+		try {
+			String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+			PreparedStatement ps = MySQL.getConnection().prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()){
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setType(rs.getInt("type"));
+				return user;
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -4,9 +4,8 @@ public class Staff extends User {
 
 	private int companyId;
 
-	public Staff(int companyId) {
+	public Staff() {
 		super();
-		this.companyId = companyId;
 	}
 
 	public int getCompanyId() {

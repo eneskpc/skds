@@ -56,8 +56,10 @@
 		<servlet-name>registerUser</servlet-name>
 		<servlet-class>controller.RegisterUser</servlet-class>
 	</servlet>
-
-
+	<servlet>
+		<servlet-name>loginUser</servlet-name>
+		<servlet-class>controller.LoginUser</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
@@ -109,5 +111,9 @@
 	<servlet-mapping>
 		<servlet-name>registerUser</servlet-name>
 		<url-pattern>/app/RegisterUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>loginUser</servlet-name>
+		<url-pattern>/app/LoginUser</url-pattern>
 	</servlet-mapping>
 </web-app>
