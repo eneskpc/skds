@@ -4,7 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>SKDS</display-name>
-
 	<servlet>
 		<servlet-name>home</servlet-name>
 		<jsp-file>/view/Home.jsp</jsp-file>
@@ -49,20 +48,20 @@
 		<servlet-name>personalSettings</servlet-name>
 		<jsp-file>/view/PersonalSettings.jsp</jsp-file>
 	</servlet>
-
 	<servlet>
 		<servlet-name>getRequestList</servlet-name>
 		<servlet-class>controller.GetRequestList</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>registerUser</servlet-name>
+		<servlet-class>controller.RegisterUser</servlet-class>
+	</servlet>
 
 
-	<!-- This is HomePage -->
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
-
-	<!-- These Are Normal Pages -->
 	<servlet-mapping>
 		<servlet-name>companyManager</servlet-name>
 		<url-pattern>/companyManager</url-pattern>
@@ -87,9 +86,6 @@
 		<servlet-name>personalSettings</servlet-name>
 		<url-pattern>/personalSettings</url-pattern>
 	</servlet-mapping>
-
-
-	<!-- These are Ajax Pages -->
 	<servlet-mapping>
 		<servlet-name>getRequestList</servlet-name>
 		<url-pattern>/app/getRequestList</url-pattern>
@@ -110,5 +106,8 @@
 		<servlet-name>addPersonal</servlet-name>
 		<url-pattern>/app/addPersonal</url-pattern>
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>registerUser</servlet-name>
+		<url-pattern>/app/RegisterUser</url-pattern>
+	</servlet-mapping>
 </web-app>

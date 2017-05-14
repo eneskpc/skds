@@ -22,6 +22,7 @@
 		<div role="tabpanel" class="tab-pane active" id="customer">
 			<br />
 			<form class="form">
+				<input type="hidden" name="userType" value="customer" />
 				<div class="form-group">
 					<label>Adınız Soyadınız* :</label> <input type="text"
 						name="nameSurname" class="form-control"
@@ -50,6 +51,7 @@
 		</div>
 		<div role="tabpanel" class="tab-pane" id="company">
 			<br />
+			<input type="hidden" name="userType" value="company" />
 			<form class="form">
 				<div class="form-group">
 					<label>Firma Adınız* :</label> <input type="text"
@@ -92,52 +94,31 @@
 </div>
 
 <script>
-	$(document).find("#company form").validate({
-		lang : 'tr',
-		rules : {
-			companyName : {
-				required : true,
-				maxlength : 50
-			},
-			authNameSurname : {
-				required : true,
-				minlength : 5,
-				maxlength : 25
-			},
-			authEmail : {
-				required : true,
-				email : true
-			},
-			password : {
-				required : true,
-				minlength : 6,
-				maxlength : 10
-			},
-			paswordAgain : {
-				required : true,
-				equalTo :  $(document).find("[name=password]")
-			}
-		},
-		submitHandler : function(form) {
-			$.ajax({
-				url : "/app/CreateRegisterProcess",
-				type : "POST",
-				data : $(form).serialize(),
-				success : function(response) {
-					console.log(response);
-				}
-			});
-		}
-	});
 	$(document)
 			.find('button#register')
 			.click(
 					function() {
 						if ($(document).find(".tab-pane.active").attr('id') == "company") {
-							$(document).find("#company form").submit();
+							$.ajax({
+								url : "/app/RegisterUser",
+								method : 'POST',
+								data : $(document).find("#company form").serialize()
+							}).done(function(response) {
+								$(document).find('#mainModal .modal-content').html("<div class='modal-body'>"
+										+'<button type="button" class="close" data-dismiss="modal"'+
+										'aria-label="Close"><i class="fa fa-times"></i></button>'+response+"</div>");
+							});
 						} else if ($(document).find(".tab-pane.active").attr(
 								'id') == "customer") {
-							$(document).find("#customer form").submit();
+							$.ajax({
+								url : "/app/RegisterUser",
+								method : 'POST',
+								data : $(document).find("#customer form").serialize()
+							}).done(function(response) {
+								$(document).find('#mainModal .modal-content').html("<div class='modal-body'>"
+										+'<button type="button" class="close" data-dismiss="modal"'+
+										'aria-label="Close"><i class="fa fa-times"></i></button>'+response+"</div>");
+							});
 						}
 					});
 </script>

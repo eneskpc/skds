@@ -7,17 +7,18 @@ import java.sql.SQLException;
 public class MySQL {
 	
 	private static MySQL mysql = new MySQL();
-	
 	private Connection conn = null;
-	private final String USER = "root";
-	private final String PASS = "";
-	private final String DB_URL = "jdbc:mysql://localhost/skds?useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	private MySQL() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/skds?useLegacyDatetimeCode=false&serverTimezone=UTC"
+					+ "&useSSL=true&user=root&password=&");
 		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}

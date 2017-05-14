@@ -83,8 +83,6 @@ public class Company extends User {
 	}
 
 	/**
-	 * Verilen id ile kayýtlý þirket bilgisini döndürür.
-	 * Þirket yok ise null döndürür.
 	 * 
 	 * @param companyId
 	 * @return Company
