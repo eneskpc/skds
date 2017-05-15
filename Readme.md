@@ -1,28 +1,28 @@
-- Müşteri ve Şirket kayıt işlemi yapıldı.
-- Giriş işlemi yapıldı. Buna göre Anasayfada değişikliler yapıldı.
-- Maven ile jstl ve taglib kütüphaneleri eklendi.
--* Maven ile jstl ve taglib kütüphanelerine gerek kalmadı silindi.
+- MÃ¼ÅŸteri ve Åirket kayÄ±t iÅŸlemi yapÄ±ldÄ±.
+- GiriÅŸ iÅŸlemi yapÄ±ldÄ±. Buna gÃ¶re Anasayfada deÄŸiÅŸikliler yapÄ±ldÄ±.
+- Maven ile jstl ve taglib kÃ¼tÃ¼phaneleri eklendi.
+-* Maven ile jstl ve taglib kÃ¼tÃ¼phanelerine gerek kalmadÄ± silindi.
 
 
-___Bugün Yapılacaklar___
+___BugÃ¼n YapÄ±lacaklar___
 
-- Giriş işleminde yapılmış olan değişikler TÜM SAYFALAR İÇİN
+- GiriÅŸ iÅŸleminde yapÄ±lmÄ±ÅŸ olan deÄŸiÅŸikler TÃœM SAYFALAR Ä°Ã‡Ä°N
 tamamlanacak.
-- oluşturulan oturum ölmediyse buna göre yönlendirmeler yapılacak.
-- Header.jsp adında bir dosya oluşturulup sayfaların üst alanı ortak
-kullanıcak.
-- Giriş bilgilerini çekmek için jsp sayfaları içerisinde geçici bir
-çözüm üretildi. Bu olay, sistem iskeletini oluşturmada yardımcı olması
-için yapıldı. Servletler ile çözüm değiştirilecek.
+- oluÅŸturulan oturum Ã¶lmediyse buna gÃ¶re yÃ¶nlendirmeler yapÄ±lacak.
+- Header.jsp adÄ±nda bir dosya oluÅŸturulup sayfalarÄ±n Ã¼st alanÄ± ortak
+kullanÄ±cak.
+- GiriÅŸ bilgilerini Ã§ekmek iÃ§in jsp sayfalarÄ± iÃ§erisinde geÃ§ici bir
+Ã§Ã¶zÃ¼m Ã¼retildi. Bu olay, sistem iskeletini oluÅŸturmada yardÄ±mcÄ± olmasÄ±
+iÃ§in yapÄ±ldÄ±. Servletler ile Ã§Ã¶zÃ¼m deÄŸiÅŸtirilecek.
 
 
-___Kalan işler___
+___Kalan iÅŸler___
 
-- Kullanıcı çıkış işlemi yapılacak.
-- Kullanıcıların ayar ve yönetim sayfaları yapılacak.
-- Sohbet sistemi yapılacak.
-- Taleplerin detay sayfası oluşturulacak.
-- Şirketler ile WebMaster arasında geçecek olan sohbet paneli yapılacak.
-- Bildirimler düzenlecek.
-**Bunlar aklıma gelenler. Unuttuklarım için benimle iletişime
-geçebilirsiniz.
+- KullanÄ±cÄ± Ã§Ä±kÄ±ÅŸ iÅŸlemi yapÄ±lacak.
+- KullanÄ±cÄ±larÄ±n ayar ve yÃ¶netim sayfalarÄ± yapÄ±lacak.
+- Sohbet sistemi yapÄ±lacak.
+- Taleplerin detay sayfasÄ± oluÅŸturulacak.
+- Åirketler ile WebMaster arasÄ±nda geÃ§ecek olan sohbet paneli yapÄ±lacak.
+- Bildirimler dÃ¼zenlecek.
+**Bunlar aklÄ±ma gelenler. UnuttuklarÄ±m iÃ§in benimle iletiÅŸime
+geÃ§ebilirsiniz.
