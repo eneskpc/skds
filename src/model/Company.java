@@ -3,6 +3,8 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Company extends User {
 
@@ -131,4 +133,24 @@ public class Company extends User {
 
 		return company;
 	}
+	
+	public static ArrayList<Company> getCompanyList() throws SQLException {
+		String sql = "SELECT user.id AS userId, company.name FROM company INNER JOIN user On user.id=company.user_id WHERE company.approved = true";
+		Statement statement = MySQL.getConnection().createStatement();
+
+		ResultSet result = statement.executeQuery(sql);
+
+		ArrayList<Company> list = new ArrayList<>();
+
+		while (result.next()) {
+			Company company = new Company();
+			company.setId(result.getInt("userId"));
+			company.setName(result.getString("name"));
+			list.add(company);
+		}
+
+		return list;
+	}
+
+
 }

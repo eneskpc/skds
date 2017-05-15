@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 14 May 2017, 13:38:27
--- Sunucu sürümü: 5.7.11
--- PHP Sürümü: 7.0.4
+-- Üretim Zamanı: 15 May 2017, 13:10:46
+-- Sunucu sürümü: 10.1.21-MariaDB
+-- PHP Sürümü: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,6 +37,14 @@ CREATE TABLE `company` (
   `User_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Şirket Bilgilerini tutar';
 
+--
+-- Tablo döküm verisi `company`
+--
+
+INSERT INTO `company` (`id`, `name`, `detail`, `contactName`, `contactPhone`, `imageUrl`, `approved`, `User_id`) VALUES
+(1, 'TestFirma', NULL, 'Tatar Ramazan', NULL, NULL, '1', 2),
+(2, 'Borucum', NULL, 'Fatih', NULL, NULL, '0', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +59,13 @@ CREATE TABLE `customer` (
   `homeCity` int(11) DEFAULT NULL,
   `User_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `gender`, `birthYear`, `homeCity`, `User_id`) VALUES
+(1, 'Rahman Be?ir', NULL, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -90,12 +105,20 @@ CREATE TABLE `reponse` (
 CREATE TABLE `request` (
   `id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `detail` text NOT NULL,
   `Company_id` int(11) NOT NULL,
   `Customer_id` int(11) NOT NULL,
-  `Staff_id` int(11) NOT NULL
+  `Staff_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `request`
+--
+
+INSERT INTO `request` (`id`, `title`, `date`, `detail`, `Company_id`, `Customer_id`, `Staff_id`) VALUES
+(2, 'cxzcxzcxzczxc', '2017-05-15 10:23:47', 'dfsfdsfvbcxbvd', 2, 1, NULL),
+(3, 'dsadsad', '2017-05-15 11:06:33', 'dsadsadsadsad', 2, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,6 +145,14 @@ CREATE TABLE `user` (
   `password` varchar(10) NOT NULL,
   `type` int(11) NOT NULL COMMENT '1-Müşteri / 2-Personel / 3-Şirket / 4-Webmaster'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Kullanıcı giriş bilgilerini ve kullanıcı tipini tutar\n';
+
+--
+-- Tablo döküm verisi `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `password`, `type`) VALUES
+(1, 'admin@gmail.com', '12345', 1),
+(2, 'tatar@gmail.com', 'tatar?m', 3);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -188,12 +219,12 @@ ALTER TABLE `user`
 -- Tablo için AUTO_INCREMENT değeri `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Tablo için AUTO_INCREMENT değeri `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
 --
@@ -208,7 +239,7 @@ ALTER TABLE `reponse`
 -- Tablo için AUTO_INCREMENT değeri `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Tablo için AUTO_INCREMENT değeri `staff`
 --
@@ -218,7 +249,7 @@ ALTER TABLE `staff`
 -- Tablo için AUTO_INCREMENT değeri `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

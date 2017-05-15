@@ -13,8 +13,8 @@ public class Request {
 	private String title;
 	private String detail;
 	private Date date;
-	private Company company;
-	private Customer customer;
+	private User company;
+	private User customer;
 
 	public int getId() {
 		return id;
@@ -44,7 +44,7 @@ public class Request {
 		this.date = date;
 	}
 
-	public Company getCompany() {
+	public User getCompany() {
 		return company;
 	}
 
@@ -56,11 +56,11 @@ public class Request {
 		this.detail = detail;
 	}
 
-	public Customer getCustomer() {
+	public User getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(User customer) {
 		this.customer = customer;
 	}
 
@@ -108,15 +108,17 @@ public class Request {
 	 * @return etkilenenSatýrSayýsý
 	 * @throws SQLException
 	 */
-	public static int createRequest(Request request) throws SQLException {
+	public boolean createRequest() throws SQLException {
 		String sql = "INSERT INTO request (title, detail, Company_id, Customer_id) VALUES (?,?,?,?)";
 		PreparedStatement pStatement = MySQL.getConnection().prepareStatement(sql);
-		pStatement.setString(1, request.getTitle());
-		pStatement.setString(2, request.getDetail());
-		pStatement.setInt(3, request.company.getId());
-		pStatement.setInt(4, request.customer.getId());
+		pStatement.setString(1, this.title);
+		pStatement.setString(2, this.detail);
+		pStatement.setInt(3, this.company.getId());
+		pStatement.setInt(4, this.customer.getId());
 
-		return pStatement.executeUpdate();
+		if(pStatement.executeUpdate() == 1)
+			return true;
+		return false;
 	}
 
 	

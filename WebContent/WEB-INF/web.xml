@@ -4,6 +4,11 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>SKDS</display-name>
+	
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	
 	<servlet>
 		<servlet-name>home</servlet-name>
 		<jsp-file>/view/Home.jsp</jsp-file>
@@ -17,7 +22,7 @@
 		<jsp-file>/view/Register.jsp</jsp-file>
 	</servlet>
 	<servlet>
-		<servlet-name>createRequest</servlet-name>
+		<servlet-name>createRequestModal</servlet-name>
 		<jsp-file>/view/CreateRequest.jsp</jsp-file>
 	</servlet>
 	<servlet>
@@ -60,6 +65,15 @@
 		<servlet-name>loginUser</servlet-name>
 		<servlet-class>controller.LoginUser</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>getCompanyList</servlet-name>
+		<servlet-class>controller.GetCompanyList</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>createRequest</servlet-name>
+		<servlet-class>controller.CreateRequest</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern></url-pattern>
@@ -88,6 +102,7 @@
 		<servlet-name>personalSettings</servlet-name>
 		<url-pattern>/personalSettings</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>getRequestList</servlet-name>
 		<url-pattern>/app/getRequestList</url-pattern>
@@ -101,8 +116,8 @@
 		<url-pattern>/app/register</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>createRequest</servlet-name>
-		<url-pattern>/app/createRequest</url-pattern>
+		<servlet-name>createRequestModal</servlet-name>
+		<url-pattern>/app/createRequestModal</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>addPersonal</servlet-name>
@@ -115,5 +130,13 @@
 	<servlet-mapping>
 		<servlet-name>loginUser</servlet-name>
 		<url-pattern>/app/LoginUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>getCompanyList</servlet-name>
+		<url-pattern>/app/getCompanyList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>createRequest</servlet-name>
+		<url-pattern>/app/createRequest</url-pattern>
 	</servlet-mapping>
 </web-app>

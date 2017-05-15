@@ -42,7 +42,7 @@ $(document)
 								keyboard : false,
 								backdrop : 'static'
 							});
-						$.ajax("/app/createRequest").done(function(response) {
+						$.ajax("/app/createRequestModal").done(function(response) {
 							$('#mainModal .modal-content').html(response);
 						});
 					});

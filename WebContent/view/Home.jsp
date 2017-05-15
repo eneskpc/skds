@@ -7,7 +7,10 @@
 	pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<% User loggedUser = (User) session.getAttribute("LoggedUser"); %>
+<%
+	User loggedUser = (User) session.getAttribute("LoggedUser");
+	System.out.println(loggedUser);
+%>
 <!doctype html>
 <html lang="tr">
 <head>
@@ -41,13 +44,12 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-					<c:choose>
-						<c:when test="${loggedUser != null}">
+					
+						<%if(loggedUser== null) { %>
 							<li><a class="btn btn-primary navbar-btn login">Giriş
 									Yap</a></li>
 							<li><a class="btn btn-info navbar-btn register">Kayıt Ol</a></li>
-						</c:when>
-						<c:otherwise>
+							<%}else { %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-primary navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -73,6 +75,7 @@
 											</div>
 									</a></li>
 								</ul></li>
+								<% if(loggedUser.getType() == 3) { %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-primary navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -124,19 +127,21 @@
 										</div>
 									</li>
 								</ul></li>
+									<%} %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-info navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false"><%= loggedUser.getEmail() %>
-									<span class="caret"></span></a>
+								aria-expanded="false"><%=loggedUser.getEmail()%> <span
+									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i>
 											Hesabım</a></li>
 									<li><a href=""><i class="fa fa-sign-out"
 											aria-hidden="true"></i> Çıkış</a></li>
 								</ul></li>
-						</c:otherwise>
-					</c:choose>
+								<%} %>
+
+
 				</ul>
 			</div>
 		</div>

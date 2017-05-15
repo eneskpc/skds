@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Company;
 import model.Customer;
 
-/**
- * Servlet implementation class RegisterUser
- */
-@WebServlet("/RegisterUser")
 public class RegisterUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +38,7 @@ public class RegisterUser extends HttpServlet {
 					response.getWriter().append("<div class='alert alert-danger'>Kayıt İşlemi Başarısız</div>");
 				}
 			} else
-				response.getWriter().append("<div class='alert alert-danger'>Şifreleriniz Uyuşmuyor.</div>");
+				response.getWriter().append("<div class='alert alert-danger'>Şifreleriniz Uyuşmuyor</div>");
 		} else if (request.getParameter("userType").equals("company")) {
 			if (request.getParameter("password").equals(request.getParameter("passwordAgain"))) {
 				Company c = new Company();
@@ -58,7 +53,7 @@ public class RegisterUser extends HttpServlet {
 					response.getWriter().append("<div class='alert alert-danger'>Kayıt İşlemi Başarısız</div>");
 				}
 			} else
-				response.getWriter().append("<div class='alert alert-danger'>Şifreleriniz Uyuşmuyor.</div>");
+				response.getWriter().append("<div class='alert alert-danger'>Şifreleriniz Uyuşmuyor</div>");
 		} else {
 			response.getWriter().append("<div class='alert alert-danger'>Bilinmeyen kullanıcı tipi! : "
 					+ request.getParameter("userType") + "</div>");
