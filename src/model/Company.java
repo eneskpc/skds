@@ -135,7 +135,7 @@ public class Company extends User {
 	}
 
 	public static ArrayList<Company> getCompanyList() throws SQLException {
-		String sql = "SELECT user.id AS userId, company.name FROM company INNER JOIN user On user.id=company.user_id WHERE company.approved = true";
+		String sql = "SELECT user.id AS userId, company.name, company.imageUrl FROM company INNER JOIN user On user.id=company.user_id WHERE company.approved = true";
 		Statement statement = MySQL.getConnection().createStatement();
 
 		ResultSet result = statement.executeQuery(sql);
@@ -146,6 +146,7 @@ public class Company extends User {
 			Company company = new Company();
 			company.setId(result.getInt("userId"));
 			company.setName(result.getString("name"));
+			company.setImageUrl(result.getString("imageUrl"));
 			list.add(company);
 		}
 

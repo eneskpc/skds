@@ -22,7 +22,7 @@ public class CreateRequest extends HttpServlet {
 		
 		User user = (User) req.getSession().getAttribute("LoggedUser");
 		
-		resp.setCharacterEncoding("UTF-8");;
+		resp.setCharacterEncoding("UTF-8");
 		
 		if(user != null) {
 			Request request = new Request();

@@ -498,9 +498,37 @@ Licensed under MIT
 	margin-left: -2px;
 }
 
-/* Profile Content */
 .profile-content {
 	padding: 20px;
 	background: #fff;
 	min-height: 460px;
+}
+
+.form-group {
+	position: relative;
+}
+
+ul.nav-stacked.autoComplete-field {
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	background-color: #fff;
+	border: 1px solid #eee;
+	max-height: 300px;
+}
+
+ul.nav-stacked.autoComplete-field img.media-object {
+	max-width: 50px;
+}
+
+ul.nav-stacked.autoComplete-field h4.media-heading {
+	margin-top: 8px;
+}
+
+ul.nav-stacked.autoComplete-field a.media {
+	cursor: pointer;
+}
+
+.companySelected {
+	margin:0 !important;
 }
