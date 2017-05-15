@@ -73,6 +73,10 @@
 		<servlet-name>createRequest</servlet-name>
 		<servlet-class>controller.CreateRequest</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>getCompanyRequestList</servlet-name>
+		<servlet-class>controller.GetCompanyRequestList</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
@@ -102,7 +106,6 @@
 		<servlet-name>personalSettings</servlet-name>
 		<url-pattern>/personalSettings</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>getRequestList</servlet-name>
 		<url-pattern>/app/getRequestList</url-pattern>
@@ -138,5 +141,9 @@
 	<servlet-mapping>
 		<servlet-name>createRequest</servlet-name>
 		<url-pattern>/app/createRequest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>getCompanyRequestList</servlet-name>
+		<url-pattern>/app/getCompanyRequestList</url-pattern>
 	</servlet-mapping>
 </web-app>

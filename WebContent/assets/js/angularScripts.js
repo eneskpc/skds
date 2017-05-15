@@ -33,6 +33,12 @@ var companyModule = angular.module("companyModule", []);
 
 companyModule.controller("companyController", function($scope, $http) {
 	
-	
+	$http.post('/app/getCompanyRequestList').then(
+			function(resp) {
+				console.log(resp.data);
+			}, 
+			function(resp) {
+				console.log("error");
+			});
 	
 });

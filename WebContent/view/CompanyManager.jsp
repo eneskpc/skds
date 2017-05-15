@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body ng-app="companyModule" ng-controller="companyController">
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -127,27 +127,6 @@
 									<td>01.02.2017</td>
 									<td class="text-success">Yeni</td>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-warning">Cevaplandı</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -167,8 +146,10 @@
 		</div>
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
+	<script src="/assets/js/angular.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/script.js"></script>
+	<script src="/assets/js/angularScripts.js"></script>
 	<script src="assets/js/bootstrap-chat.js"></script>
 </body>
 </html>

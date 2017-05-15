@@ -21,17 +21,20 @@ public class CreateRequest extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		User user = (User) req.getSession().getAttribute("LoggedUser");
-		
-		resp.setCharacterEncoding("UTF-8");;
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
 		
 		if(user != null) {
 			Request request = new Request();
 			request.setTitle(req.getParameter("rTitle"));
+			System.out.println(request.getTitle());
 			request.setDetail(req.getParameter("rDetail"));
 			Company comp = new Company();
 			comp.setId(Integer.parseInt(req.getParameter("company")));
 			request.setCompany(comp);
-			request.setCustomer((Customer)user);
+			Customer customer = new Customer();
+			customer.setId(user.getId());
+			request.setCustomer(customer);
 			try {
 				request.createRequest();
 				resp.getWriter().append("<div class='alert alert-success'>İşlem Başarılı!</div>");

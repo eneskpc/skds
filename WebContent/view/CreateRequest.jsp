@@ -48,7 +48,8 @@
 							$.ajax({
 								url : "/app/createRequest",
 								method : 'POST',
-								data : $(document).find("#createRequestForm").serialize()
+								data : $(document).find("#createRequestForm").serialize(),
+								contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 							}).done(function(response) {
 								$(document).find('#mainModal .modal-content').html("<div class='modal-body'>"
 										+'<button type="button" class="close" data-dismiss="modal"'+
