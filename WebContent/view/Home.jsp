@@ -41,13 +41,15 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
 					
 						<%if(loggedUser== null) { %>
 							<li><a class="btn btn-primary navbar-btn login">Giriş
 									Yap</a></li>
 							<li><a class="btn btn-info navbar-btn register">Kayıt Ol</a></li>
 							<%}else { %>
+							<% if(loggedUser.getType() == 1) {%>
+							<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
+							<% } %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-primary navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"

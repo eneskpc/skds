@@ -1,3 +1,5 @@
+<%@page import="model.Company"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!doctype html>
@@ -13,7 +15,8 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<% ArrayList<Company> companyList = Company.getRandomCompany(4); %>
+<body  ng-app="customerModule" ng-controller="customerController">
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
@@ -65,7 +68,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/customerSettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
-							<li><a href=""><i class="fa fa-sign-out"
+							<li><a href=""  id="btnLogout"><i class="fa fa-sign-out"
 									aria-hidden="true"></i> Çıkış</a></li>
 						</ul></li>
 				</ul>
@@ -82,13 +85,14 @@
 					<div class="panel-body">
 						<form class="form" action="">
 							<div class="form-group">
-								<input type="search" placeholder="Şikayet veya marka arayın..."
+								<input type="search" placeholder="Şikayet veya marka arayın..." ng-model="searchedText"
 									class="form-control" />
 							</div>
 						</form>
 					</div>
 				</div>
-				<div class="panel panel-primary">
+				<div class="panel panel-primary"
+					ng-repeat="request in requestList | filter:searchedText">
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
@@ -96,59 +100,17 @@
 									alt="Şirket Adı">
 							</div>
 							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
+								<a class="media-heading" ng-bind="request.title"></a>
+								<p ng-bind="request.detail"></p>
 							</div>
 						</div>
 					</div>
 					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
-					</div>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<img class="media-object" src="assets/images/indir.svg"
-									alt="Şirket Adı">
-							</div>
-							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
-					</div>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<img class="media-object" src="assets/images/indir.svg"
-									alt="Şirket Adı">
-							</div>
-							<div class="media-body">
-								<a class="media-heading">Şikayet Başlığı</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Proin congue rhoncus vulputate. Curabitur eget venenatis
-									sapien. Mauris tempor sollicitudin purus, a elementum mi
-									consectetur nec.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer">
-						<i class="fa fa-user"></i>&nbsp;<span>Şikayetçi</span>&nbsp;&nbsp;
-						<i class="fa fa-clock-o"></i>&nbsp;<span>01:23</span>
+						<i class="fa fa-user"></i>&nbsp;<span
+							ng-bind="request.customer.name"></span>&nbsp;&nbsp; <i
+							class="fa fa-clock-o"></i>&nbsp;<span ng-bind="request.date"></span>&nbsp;&nbsp;
+						<i class="fa fa-caret-right"></i>&nbsp;<span
+							ng-bind="request.company.name"></span>
 					</div>
 				</div>
 			</div>
@@ -158,6 +120,7 @@
 						<div class="panel-title">Bizimle Çalışan Bazı Markalar</div>
 					</div>
 					<ul class="list-group ">
+					<%for(Company company : companyList) { %>
 						<li class="list-group-item company-item">
 							<div class="media">
 								<div class="media-left">
@@ -165,32 +128,11 @@
 										alt="Şirket Adı">
 								</div>
 								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
+									<a class="media-heading"><%= company.getName() %></a>
 								</div>
 							</div>
 						</li>
-						<li class="list-group-item company-item">
-							<div class="media">
-								<div class="media-left">
-									<img class="media-object" src="assets/images/indir.svg"
-										alt="Şirket Adı">
-								</div>
-								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
-								</div>
-							</div>
-						</li>
-						<li class="list-group-item company-item">
-							<div class="media">
-								<div class="media-left">
-									<img class="media-object" src="assets/images/indir.svg"
-										alt="Şirket Adı">
-								</div>
-								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
-								</div>
-							</div>
-						</li>
+						<%} %>
 					</ul>
 				</div>
 			</div>
@@ -208,7 +150,9 @@
 		</div>
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
+	<script src="/assets/js/angular.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/script.js"></script>
+	<script src="/assets/js/angularScripts.js"></script>
 </body>
 </html>

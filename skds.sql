@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 15 May 2017, 13:10:46
+-- Üretim Zamanı: 15 May 2017, 18:32:17
 -- Sunucu sürümü: 10.1.21-MariaDB
 -- PHP Sürümü: 5.6.30
 
@@ -42,8 +42,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `name`, `detail`, `contactName`, `contactPhone`, `imageUrl`, `approved`, `User_id`) VALUES
-(1, 'TestFirma', NULL, 'Tatar Ramazan', NULL, NULL, '1', 2),
-(2, 'Borucum', NULL, 'Fatih', NULL, NULL, '0', 3);
+(1, 'Firma Örnek', NULL, 'Fatih Firma', NULL, NULL, '0', 2);
 
 -- --------------------------------------------------------
 
@@ -65,7 +64,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `birthYear`, `homeCity`, `User_id`) VALUES
-(1, 'Rahman Be?ir', NULL, 0, 0, 1);
+(1, 'Mü?teri Örnek', NULL, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -85,20 +84,6 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `reponse`
---
-
-CREATE TABLE `reponse` (
-  `id` int(11) NOT NULL,
-  `message` text NOT NULL,
-  `previous` int(11) NOT NULL,
-  `Request_id` int(11) NOT NULL,
-  `User_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `request`
 --
 
@@ -109,16 +94,25 @@ CREATE TABLE `request` (
   `detail` text NOT NULL,
   `Company_id` int(11) NOT NULL,
   `Customer_id` int(11) NOT NULL,
-  `Staff_id` int(11) DEFAULT NULL
+  `Staff_id` int(11) DEFAULT NULL,
+  `IsCompanyRead` set('0','1') NOT NULL DEFAULT '0',
+  `IsStaffRead` set('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Tablo döküm verisi `request`
+-- Tablo için tablo yapısı `response`
 --
 
-INSERT INTO `request` (`id`, `title`, `date`, `detail`, `Company_id`, `Customer_id`, `Staff_id`) VALUES
-(2, 'cxzcxzcxzczxc', '2017-05-15 10:23:47', 'dfsfdsfvbcxbvd', 2, 1, NULL),
-(3, 'dsadsad', '2017-05-15 11:06:33', 'dsadsadsadsad', 2, 1, NULL);
+CREATE TABLE `response` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `previous` int(11) NOT NULL,
+  `Request_id` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL,
+  `isRead` set('0','1') NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -151,8 +145,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `type`) VALUES
-(1, 'admin@gmail.com', '12345', 1),
-(2, 'tatar@gmail.com', 'tatar?m', 3);
+(1, 'musteri@gmail.com', '12345', 1),
+(2, 'firma@gmail.com', '12345', 3);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -181,14 +175,6 @@ ALTER TABLE `messages`
   ADD KEY `Messages_User_Sender` (`sender_id`);
 
 --
--- Tablo için indeksler `reponse`
---
-ALTER TABLE `reponse`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `Reponse_Request` (`Request_id`),
-  ADD KEY `Reponse_User` (`User_id`);
-
---
 -- Tablo için indeksler `request`
 --
 ALTER TABLE `request`
@@ -196,6 +182,14 @@ ALTER TABLE `request`
   ADD KEY `Request_User_Company` (`Customer_id`),
   ADD KEY `Request_User_Customer` (`Staff_id`),
   ADD KEY `Request_User_Staff` (`Company_id`);
+
+--
+-- Tablo için indeksler `response`
+--
+ALTER TABLE `response`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Reponse_Request` (`Request_id`),
+  ADD KEY `Reponse_User` (`User_id`);
 
 --
 -- Tablo için indeksler `staff`
@@ -219,7 +213,7 @@ ALTER TABLE `user`
 -- Tablo için AUTO_INCREMENT değeri `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Tablo için AUTO_INCREMENT değeri `customer`
 --
@@ -231,15 +225,15 @@ ALTER TABLE `customer`
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Tablo için AUTO_INCREMENT değeri `reponse`
---
-ALTER TABLE `reponse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- Tablo için AUTO_INCREMENT değeri `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `response`
+--
+ALTER TABLE `response`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Tablo için AUTO_INCREMENT değeri `staff`
 --
@@ -249,7 +243,7 @@ ALTER TABLE `staff`
 -- Tablo için AUTO_INCREMENT değeri `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

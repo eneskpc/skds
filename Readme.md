@@ -26,3 +26,14 @@ ___Kalan işler___
 - Bildirimler düzenlecek.
 **Bunlar aklıma gelenler. Unuttuklarım için benimle iletişime
 geçebilirsiniz.
+
+
+__Ornek Kullanıcı__
+-musteri@gmail.com 12345
+-firma@gmail.com 12345
+
+__Yapılanlar__
+-Müşteri talep listesi getirilmesi.
+-veritabanına talep okundu mu işlemi için alanların eklenmesi
+-rastgele firmanın görüntülenmesi
+

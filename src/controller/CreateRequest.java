@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Company;
+import model.Customer;
 import model.Request;
 import model.User;
 
@@ -30,12 +31,12 @@ public class CreateRequest extends HttpServlet {
 			Company comp = new Company();
 			comp.setId(Integer.parseInt(req.getParameter("company")));
 			request.setCompany(comp);
-			request.setCustomer(user);
+			request.setCustomer((Customer)user);
 			try {
 				request.createRequest();
-				resp.getWriter().append("<div class='alert alert-success'>Ýþlem Baþarýlý</div>");
+				resp.getWriter().append("<div class='alert alert-success'>Ä°ÅŸlem BaÅŸarÄ±lÄ±!</div>");
 			} catch (SQLException e) {
-				resp.getWriter().append("<div class='alert alert-success'>Ýþlem Baþarýsýz</div>");
+				resp.getWriter().append("<div class='alert alert-success'>Ä°ÅŸlem BaÅŸarÄ±sÄ±z!</div>");
 				e.printStackTrace();
 			}
 		}
