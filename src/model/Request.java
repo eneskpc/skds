@@ -149,7 +149,7 @@ public class Request {
 		pStatement.setInt(3, this.company.getId());
 		pStatement.setInt(4, this.customer.getId());
 
-		if (pStatement.executeUpdate() == 1)
+		if (pStatement.executeUpdate() > 0)
 			return true;
 		return false;
 	}

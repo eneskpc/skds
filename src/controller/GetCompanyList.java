@@ -25,6 +25,7 @@ public class GetCompanyList extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		try {
+			resp.setContentType("text/html;charset=UTF-8");
 			ArrayList<Company> companyList = Company.getCompanyList();
 			Gson gson = new GsonBuilder().create();
 			resp.getWriter().write(gson.toJson(companyList));

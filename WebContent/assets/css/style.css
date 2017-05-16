@@ -532,3 +532,6 @@ ul.nav-stacked.autoComplete-field a.media {
 .companySelected {
 	margin:0 !important;
 }
+.mce-branding-powered-by{
+	opacity: 0 !important;
+}

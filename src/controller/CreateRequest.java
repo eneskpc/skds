@@ -28,13 +28,16 @@ public class CreateRequest extends HttpServlet {
 		if(user != null) {
 			Request request = new Request();
 			request.setTitle(req.getParameter("rTitle"));
-			System.out.println(request.getTitle());
 			request.setDetail(req.getParameter("rDetail"));
+			
 			Company comp = new Company();
 			comp.setId(Integer.parseInt(req.getParameter("company")));
+			
 			request.setCompany(comp);
+			
 			Customer customer = new Customer();
 			customer.setId(user.getId());
+			
 			request.setCustomer(customer);
 			try {
 				request.createRequest();
