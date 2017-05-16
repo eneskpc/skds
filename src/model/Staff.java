@@ -51,29 +51,34 @@ public class Staff extends User {
 		
 		Statement statement = MySQL.getConnection().createStatement();
 	
-		if(statement.execute(staffDeleteSql)) 
-			if(statement.execute(userDeleteSql))
+		if(statement.executeUpdate(staffDeleteSql) == 1) {
+			if(statement.executeUpdate(userDeleteSql) == 1)
 				return true;
+		}
 		return false;
 	}
 
 	public static boolean addStaff(String email, int companyId) throws SQLException {
 		String selectPersonalId = "SELECT user.id, customer.name FROM user INNER JOIN customer"
-				+ " ON customer.User_id = user.id WHERE user.email = " + email;
+				+ " ON customer.User_id = user.id WHERE user.email = '" + email+"'";
 		
 		Statement statement = MySQL.getConnection().createStatement();
+		Statement update = MySQL.getConnection().createStatement();
 		
 		ResultSet result = statement.executeQuery(selectPersonalId);
 		
 		while(result.next()) {
+			System.out.println("rr");
 			int id = result.getInt("id");
-			boolean isDeleted = statement.execute("DELETE FROM customer WHERE customer.User_id = " + id);
-			if(isDeleted) {
-				statement.execute("INSERT INTO staff(name, Company_id, User_id) "
-						+ "VALUES("+result.getString("name")+","+companyId+","+id+")");
-				statement.execute("UPDATE user SET user.type=2 WHERE id ="+id);
+			int isDeleted = update.executeUpdate("DELETE FROM customer WHERE customer.User_id = " + id);
+			if(isDeleted == 1) {
+				update.executeUpdate("INSERT INTO staff(name, Company_id, User_id) "
+						+ "VALUES('"+result.getString("name")+"',"+companyId+","+id+")");
+				update.executeUpdate("UPDATE user SET user.type=2 WHERE id ="+id);
 				return true;
 			}
+			
+			
 		}
 		return false;
 		

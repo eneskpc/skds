@@ -186,7 +186,7 @@ if(loggedUser!=null) {
 									<tr>
 										<td><%=staff.getName() %></td>
 										<td><%= staff.getEmail() %></td>
-										<td align="right"><a href="" onclick="removeStaff(<%=staff.getId() %>)"
+										<td align="right"><a href="#" onclick="removeStaff(<%=staff.getId() %>)"
 											class="btn btn-danger btn-xs"> <i class="fa fa-trash-o"></i>
 										</a></td>
 									</tr>
