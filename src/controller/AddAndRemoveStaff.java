@@ -33,7 +33,18 @@ public class AddAndRemoveStaff extends HttpServlet {
 		} else if(operation.equals("add")) {
 			User loggedUser = (User) req.getSession().getAttribute("LoggedUser");
 			String email = req.getParameter("staffEmail");
-			
+			try {
+				boolean state = Staff.addStaff(email, loggedUser.getId());
+				System.out.println(state);
+				System.out.println(email);
+				if(state) {
+					resp.getWriter().write(email+" personel olarak atandı!");
+				} else {
+					resp.getWriter().write("Bu email personel olarak atanamaz!");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page import="model.Company"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,16 @@
 <!doctype html>
 <html lang="tr">
 <head>
+<%
+	User loggedUser = (User)session.getAttribute("LoggedUser");
+	if(loggedUser== null) {
+		response.sendRedirect("/");
+	} else {
+		if(loggedUser.getType() != 1) {
+			response.sendRedirect("/");
+		}
+	}
+%>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -28,7 +39,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SKDS</a>
+				<a class="navbar-brand" href="/">SKDS</a>
 				<p class="navbar-text">Sorunlarınız Sorunlarımızdır</p>
 			</div>
 
@@ -66,6 +77,9 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Hoşgeldin, {User} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+						
+							<li><a href="/customerManager"><i class="fa fa-cog" aria-hidden="true"></i>
+									Taleplerim</a></li>
 							<li><a href="/customerSettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
 							<li><a href=""  id="btnLogout"><i class="fa fa-sign-out"

@@ -15,7 +15,7 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" id="add-personal" class="btn btn-info">Personel Olarak Ata</button>
+    <button type="button" id="addPersonal" class="btn btn-info">Personel Olarak Ata</button>
 </div>
 
 <script>
@@ -50,13 +50,15 @@
         }
     });
 
-    $(document).on('click', '#add-personal', function() {
-    	$.ajax({
+    $(document).on('click', 'button#addPersonal', function() {
+        alert("tıklandı");
+    	/*$.ajax({
 			url : "/app/addAndRemoveStaff",
 			method : 'POST',
 			data : {"staffEmail" : $("#staff-email").value(), "operation":"add"}
 		}).done(function(response) {
-			console.log(response);
-		});
+			alert(response);
+		});*/
 	});
+	
 </script>

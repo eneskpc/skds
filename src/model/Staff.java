@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -58,7 +57,7 @@ public class Staff extends User {
 		return false;
 	}
 
-	public boolean createStaff(String email, int companyId) throws SQLException {
+	public static boolean addStaff(String email, int companyId) throws SQLException {
 		String selectPersonalId = "SELECT user.id, customer.name FROM user INNER JOIN customer"
 				+ " ON customer.User_id = user.id WHERE user.email = " + email;
 		
@@ -68,7 +67,13 @@ public class Staff extends User {
 		
 		while(result.next()) {
 			int id = result.getInt("id");
-			
+			boolean isDeleted = statement.execute("DELETE FROM customer WHERE customer.User_id = " + id);
+			if(isDeleted) {
+				statement.execute("INSERT INTO staff(name, Company_id, User_id) "
+						+ "VALUES("+result.getString("name")+","+companyId+","+id+")");
+				statement.execute("UPDATE user SET user.type=2 WHERE id ="+id);
+				return true;
+			}
 		}
 		return false;
 		

@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SKDS</a>
+				<a class="navbar-brand" href="/">SKDS</a>
 				<p class="navbar-text">Sorunlarınız Sorunlarımızdır</p>
 			</div>
 
@@ -96,6 +96,8 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Hoşgeldin, {User} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="/companyManager"><i class="fa fa-cog" aria-hidden="true"></i>
+									Taleplerim</a></li>
 							<li><a href="/companySettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
 							<li><a href=""><i class="fa fa-sign-out"

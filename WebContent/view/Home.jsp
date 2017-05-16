@@ -135,8 +135,26 @@
 								aria-expanded="false"><%=loggedUser.getEmail()%> <span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i>
-											Hesabım</a></li>
+									<%
+									if(loggedUser.getType() == 1) {
+									%>
+										<li><a href="/customerManager"><i class="fa fa-cog" aria-hidden="true"></i>
+												Taleplerim</a></li>
+										<li><a href="/customerSettings"><i class="fa fa-cog" aria-hidden="true"></i>
+												Hesabım</a></li>
+									<%} else if(loggedUser.getType() == 2) {%>
+									
+										<li><a href="/personelManager"><i class="fa fa-cog" aria-hidden="true"></i>
+												Taleplerim</a></li>
+										<li><a href="/personalSettings"><i class="fa fa-cog" aria-hidden="true"></i>
+												Hesabım</a></li>
+									<%} else if(loggedUser.getType() == 3) { %>
+										
+										<li><a href="/companyManager"><i class="fa fa-cog" aria-hidden="true"></i>
+												Taleplerim</a></li>
+										<li><a href="/companySettings"><i class="fa fa-cog" aria-hidden="true"></i>
+												Hesabım</a></li>	
+									<%} %>
 									<li><a href=""><i class="fa fa-sign-out"
 											aria-hidden="true"></i> Çıkış</a></li>
 								</ul></li>

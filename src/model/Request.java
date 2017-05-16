@@ -155,7 +155,7 @@ public class Request {
 	}
 
 	public static ArrayList<Request> getCompanyRequestList(int companyId) throws SQLException {
-		String sql = "SELECT request.id , request.title, request.date, request.IsCompanyRead, staff.name AS staffName"
+		String sql = "SELECT request.id , request.title, request.date, staff.name AS staffName"
 				+ " FROM request LEFT JOIN staff ON staff.User_id = request.Staff_id WHERE request.Company_id =" +companyId;
 		ArrayList<Request> requestList = new ArrayList<>();
 
