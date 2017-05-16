@@ -19,38 +19,7 @@
 </div>
 
 <script>
-    $(document).find("#company form").validate({
-        lang: 'tr',
-        rules: {
-            companyName: {
-                required: true,
-                maxlength: 50
-            },
-            authNameSurname: {
-                required: true,
-                minlength: 5,
-                maxlength: 25
-            },
-            authEmail: {
-                required: true,
-                email: true
-            },
-            password: {
-                required: true,
-                minlength: 6,
-                maxlength: 10
-            },
-            paswordAgain: {
-                required: true,
-                equalTo: "[name=password]"
-            }
-        },
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
-
-    $(document).on('click', 'button#addPersonal', function() {
+    $(document).find('button#addPersonal').click(function() {
         alert("tıklandı");
     	/*$.ajax({
 			url : "/app/addAndRemoveStaff",
@@ -60,5 +29,4 @@
 			alert(response);
 		});*/
 	});
-	
 </script>
