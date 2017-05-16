@@ -59,13 +59,19 @@ $(document)
 						});
 					});
 					
-					function removeStaff(staffId) {
-						$.ajax({
-							url : "/app/addAndRemoveStaff",
-							method : 'POST',
-							data : {"staffId" : staffId, "operation":"remove"}
-						}).done(function(response) {
-							console.log(response);
-						});
-					}
+					
 				});
+				
+			function removeStaff(staffId) {
+				var sonuc = confirm("Silmek İstediğinizden Emin Misiniz?");
+				if(sonuc) {
+					$.ajax({
+						url : "/app/addAndRemoveStaff",
+						method : 'POST',
+						data : {"staffId" : staffId, "operation":"remove"}
+					}).done(function(response) {
+						console.log(response);
+					});
+					window.location.href = "/companySettings#personalInfo"
+				}
+			}

@@ -20,13 +20,12 @@
 
 <script>
     $(document).find('button#addPersonal').click(function() {
-        alert("tıklandı");
-    	/*$.ajax({
+    	$.ajax({
 			url : "/app/addAndRemoveStaff",
 			method : 'POST',
-			data : {"staffEmail" : $("#staff-email").value(), "operation":"add"}
+			data : {"staffEmail" : $("#staff-email").val(), "operation":"add"}
 		}).done(function(response) {
 			alert(response);
-		});*/
+		});
 	});
 </script>

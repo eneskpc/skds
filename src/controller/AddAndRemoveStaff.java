@@ -18,9 +18,11 @@ public class AddAndRemoveStaff extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String operation = req.getParameter("operation");
+		System.out.println(operation);
 		if(operation.equals("remove")) {
 			int staffId = Integer.parseInt(req.getParameter("staffId"));
 			try {
+				System.out.println("StaffId : " + staffId);
 				boolean state = Staff.removeStaff(staffId);
 				if(state) {
 					resp.getWriter().write("Kaldırma İşlemi Başarılı.");
@@ -33,6 +35,7 @@ public class AddAndRemoveStaff extends HttpServlet {
 		} else if(operation.equals("add")) {
 			User loggedUser = (User) req.getSession().getAttribute("LoggedUser");
 			String email = req.getParameter("staffEmail");
+			System.out.println(email + " " + loggedUser.getId());
 			try {
 				boolean state = Staff.addStaff(email, loggedUser.getId());
 				System.out.println(state);
