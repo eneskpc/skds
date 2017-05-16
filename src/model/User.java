@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class User {
 
@@ -79,6 +80,51 @@ public class User {
 							+ " Üyelik işlemini tekrar deneyin veya site yönetimi le iletişime geçin.<br /></div>");
 		}
 		return false;
+	}
+	
+	
+	public static ArrayList<User> getUsers() {
+		try {
+			String sql2 = "SELECT *  FROM user";
+			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
+			ResultSet rs = ps2.executeQuery();
+			
+			ArrayList<User> customers = new ArrayList<User>();
+			
+			while(rs.next()){
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setType(rs.getInt("type"));
+				customers.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static ArrayList<User> getUsers(String filter) {
+		try {
+			String sql2 = "SELECT *  FROM user WHERE email LIKE '%?%'";
+			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
+			ResultSet rs = ps2.executeQuery();
+			
+			ArrayList<User> customers = new ArrayList<User>();
+			
+			while(rs.next()){
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setType(rs.getInt("type"));
+				customers.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static User ValidationUser(String email, String password) {
