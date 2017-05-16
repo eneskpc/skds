@@ -77,6 +77,10 @@
 		<servlet-name>getCompanyRequestList</servlet-name>
 		<servlet-class>controller.GetCompanyRequestList</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>addAndRemoveStaff</servlet-name>
+		<servlet-class>controller.AddAndRemoveStaff</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
@@ -145,5 +149,9 @@
 	<servlet-mapping>
 		<servlet-name>getCompanyRequestList</servlet-name>
 		<url-pattern>/app/getCompanyRequestList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>addAndRemoveStaff</servlet-name>
+		<url-pattern>/app/addAndRemoveStaff</url-pattern>
 	</servlet-mapping>
 </web-app>

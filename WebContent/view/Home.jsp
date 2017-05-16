@@ -49,7 +49,7 @@
 							<%}else { %>
 							<% if(loggedUser.getType() == 1) {%>
 							<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-							<% } %>
+							
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-primary navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -75,7 +75,8 @@
 											</div>
 									</a></li>
 								</ul></li>
-								<% if(loggedUser.getType() == 3) { %>
+								
+								<%} else if(loggedUser.getType() == 3) { %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-primary navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"

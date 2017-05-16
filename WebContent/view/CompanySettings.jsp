@@ -1,8 +1,27 @@
+<%@page import="model.Staff"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Company"%>
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="tr">
 <head>
+<% 
+Company company=null;
+ArrayList<Staff> staffList = null;
+User loggedUser = (User) session.getAttribute("LoggedUser");
+if(loggedUser!=null) {
+	if(loggedUser.getType() == 3) {
+		company = Company.getCompany(loggedUser.getId());
+		staffList = Staff.getStaffList(loggedUser.getId());
+	} else {
+		response.sendRedirect("/");
+	}
+} else {
+	response.sendRedirect("/");
+}
+%>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,31 +50,6 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle btn btn-primary navbar-btn"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-bell"></i><span
-							class="badge">3</span></a>
-						<ul class="dropdown-menu">
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-						</ul></li>
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-primary navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -108,7 +102,7 @@
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-info navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Hoşgeldin, {User} <span class="caret"></span></a>
+						aria-expanded="false">Hoşgeldin <%= company!= null ? company.getContactName():"" %> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
@@ -127,7 +121,7 @@
 						<img src="assets/images/indir.svg" class="img-responsive" alt="">
 					</div>
 					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">John Doe</div>
+						<div class="profile-usertitle-name"><%= company!= null ? company.getContactName() : "" %></div>
 						<div class="profile-usertitle-job">Şirket Yetkilisi</div>
 					</div>
 					<div class="profile-usermenu">
@@ -152,13 +146,19 @@
 							<h2>Firma Bilgileri</h2>
 							<form action="" class="form">
 								<div class="form-group">
-									<label>Firma Adı</label> <input type="text"
+									<label>Firma Adı</label> <input type="text" value="<%= company!= null ? company.getName() : "" %>"
 										class="form-control"
 										placeholder="Maksimum 50 karakter olacak şekilde girin" />
 								</div>
 								<div class="form-group">
 									<label>Firma Açıklaması</label>
-									<textarea class="form-control" placeholder="İsteğe bağlı"></textarea>
+									<textarea class="form-control" placeholder="İsteğe bağlı"><%
+									if(company!=null) {
+										if(company.getDetail() != null) {
+											out.print(company.getDetail());
+										}
+									}
+									%></textarea>
 								</div>
 								<div class="form-group">
 									<input type="submit" class="btn btn-info" value="Kaydet" />
@@ -178,27 +178,17 @@
 									</tr>
 								</thead>
 								<tbody>
+								<%
+								if(staffList != null)
+									for(Staff staff : staffList) { %>
 									<tr>
-										<td>John Doe</td>
-										<td>john.doe@doe.com</td>
-										<td align="right"><a href=""
+										<td><%=staff.getName() %></td>
+										<td><%= staff.getEmail() %></td>
+										<td align="right"><a href="" onclick="removeStaff(<%=staff.getId() %>)"
 											class="btn btn-danger btn-xs"> <i class="fa fa-trash-o"></i>
 										</a></td>
 									</tr>
-									<tr>
-										<td>John Doe</td>
-										<td>john.doe@doe.com</td>
-										<td align="right"><a href=""
-											class="btn btn-danger btn-xs"> <i class="fa fa-trash-o"></i>
-										</a></td>
-									</tr>
-									<tr>
-										<td>John Doe</td>
-										<td>john.doe@doe.com</td>
-										<td align="right"><a href=""
-											class="btn btn-danger btn-xs"> <i class="fa fa-trash-o"></i>
-										</a></td>
-									</tr>
+									<%} %>
 								</tbody>
 							</table>
 						</div>
@@ -206,8 +196,8 @@
 							<h2>Kullanıcı İşlemleri</h2>
 							<form action="" class="form">
 								<div class="form-group">
-									<label>Yetkili Email Adresi</label> <input type="text"
-										class="form-control"
+									<label>Email Adresi</label> <input type="text"
+										class="form-control" value="<%= company!= null ? company.getEmail() : ""%>"
 										placeholder="Maksimum 50 karakter olacak şekilde girin" />
 								</div>
 								<div class="form-group">

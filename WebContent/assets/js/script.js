@@ -58,4 +58,14 @@ $(document)
 							$('#mainModal .modal-content').html(response);
 						});
 					});
+					
+					function removeStaff(staffId) {
+						$.ajax({
+							url : "/app/addAndRemoveStaff",
+							method : 'POST',
+							data : {"staffId" : staffId, "operation":"remove"}
+						}).done(function(response) {
+							console.log(response);
+						});
+					}
 				});

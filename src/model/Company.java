@@ -106,7 +106,7 @@ public class Company extends User {
 	}
 
 	public static Company getCompany(int userId) throws SQLException {
-		String sql = "SELECT user.id AS userId, user.email, user.password, company.id AS companyId, "
+		String sql = "SELECT user.id AS userId, user.email, user.password, "
 				+ "company.name, company.detail, company.contactName, company.contactPhone, "
 				+ "company.imageUrl, company.approved FROM company INNER JOIN user "
 				+ "On user.id=company.user_id WHERE user.id = ?";
@@ -122,7 +122,6 @@ public class Company extends User {
 			company.setId(result.getInt("userId"));
 			company.setEmail(result.getString("email"));
 			company.setPassword(result.getString("password"));
-			company.setCompanyId(result.getInt("companyId"));
 			company.setName(result.getString("name"));
 			company.setDetail(result.getString("detail"));
 			company.setContactName(result.getString("contactName"));
@@ -174,5 +173,5 @@ public class Company extends User {
 		return list;
 
 	}
-
+	
 }

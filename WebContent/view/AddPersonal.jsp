@@ -9,7 +9,7 @@
     <form class="form">
         <div class="form-group">
             <label>Email Adresi* :</label>
-            <input type="email" name="email" class="form-control"
+            <input type="email" name="email" class="form-control" id="staff-email"
                    placeholder="Email formatına uygun giriş yapınız. Örnek : aaa@bb.cc" required/>
         </div>
     </form>
@@ -49,4 +49,14 @@
             form.submit();
         }
     });
+
+    $(document).on('click', '#add-personal', function() {
+    	$.ajax({
+			url : "/app/addAndRemoveStaff",
+			method : 'POST',
+			data : {"staffEmail" : $("#staff-email").value(), "operation":"add"}
+		}).done(function(response) {
+			console.log(response);
+		});
+	});
 </script>

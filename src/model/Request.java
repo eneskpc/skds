@@ -17,9 +17,6 @@ public class Request {
 	private Customer customer;
 	private Staff staff;
 	private int responseCount;
-	private int isCompanyRead;
-	private int isStaffRead;
-	// Company ekranı için cevaplandı mı bilgisinin alacağımız yer
 
 	public int getId() {
 		return id;
@@ -83,22 +80,6 @@ public class Request {
 
 	public void setResponseCount(int responseCount) {
 		this.responseCount = responseCount;
-	}
-
-	public int getIsCompanyRead() {
-		return isCompanyRead;
-	}
-
-	public void setIsCompanyRead(int isCompanyRead) {
-		this.isCompanyRead = isCompanyRead;
-	}
-
-	public int getIsStaffRead() {
-		return isStaffRead;
-	}
-
-	public void setIsStaffRead(int isStaffRead) {
-		this.isStaffRead = isStaffRead;
 	}
 
 	/**
@@ -174,10 +155,8 @@ public class Request {
 	}
 
 	public static ArrayList<Request> getCompanyRequestList(int companyId) throws SQLException {
-		String sql = "SELECT request.id , request.title, staff.name AS staffName, request.date, "
-				+ "request.IsCompanyRead, count(DISTINCT response.Request_id) AS response "
-				+ "FROM request INNER JOIN staff ON " + "staff.User_id = request.Staff_id INNER JOIN response ON"
-				+ " response.Request_id = request.id WHERE request.Company_id = " + companyId;
+		String sql = "SELECT request.id , request.title, request.date, request.IsCompanyRead, staff.name AS staffName"
+				+ " FROM request LEFT JOIN staff ON staff.User_id = request.Staff_id WHERE request.Company_id =" +companyId;
 		ArrayList<Request> requestList = new ArrayList<>();
 
 		Statement statement = MySQL.getConnection().createStatement();
@@ -192,8 +171,6 @@ public class Request {
 			staff.setName(result.getString("staffName"));
 			request.setStaff(staff);
 			request.setDate(new SimpleDateFormat("dd.MM.yyyy").format(result.getDate("date")));
-			request.setIsCompanyRead(result.getInt("isCompanyRead"));
-			request.setResponseCount(result.getInt("response"));
 		}
 
 		return requestList;
