@@ -27,7 +27,7 @@ public class GetRequestList extends HttpServlet {
 		try {
 			String userType = req.getParameter("userType");
 			if(userType.equals("home")) {
-				requestList = Request.getRequestList(-1);
+				requestList = Request.getRequestList(0);
 			} else if(userType.equals("customer")) {
 				if(session!=null) {
 					User user = (User) req.getSession().getAttribute("LoggedUser");

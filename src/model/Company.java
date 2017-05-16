@@ -162,7 +162,7 @@ public class Company extends User {
 		ResultSet result = statement.executeQuery(sql);
 
 		ArrayList<Company> list = new ArrayList<>();
-
+		
 		while (result.next()) {
 			Company company = new Company();
 			company.setId(result.getInt("userId"));

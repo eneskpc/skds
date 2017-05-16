@@ -13,7 +13,7 @@ public class MySQL {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/skds?useLegacyDatetimeCode=false&serverTimezone=UTC"
-					+ "&useSSL=true&user=root&password=&");
+					+ "&useSSL=true&user=root&characterEncoding=utf8&useUnicode=true");
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

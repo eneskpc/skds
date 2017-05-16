@@ -22,6 +22,7 @@ public class GetCompanyList extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			resp.setContentType("text/html;charset=UTF-8");
 			ArrayList<Company> companyList = Company.getCompanyList();
 			Gson gson = new GsonBuilder().create();
 			resp.getWriter().write(gson.toJson(companyList));
