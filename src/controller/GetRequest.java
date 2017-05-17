@@ -32,15 +32,20 @@ public class GetRequest extends HttpServlet {
 		if (Integer.parseInt(request.getParameter("id")) > 0) {
 			Request r = Request.getRequest(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("requestInfo", r);
-
+				System.out.println("İd : " + Integer.parseInt(request.getParameter("id")));
 			ArrayList<Response> arrayR = Response.getResponses(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("arrayR", arrayR);
 			
 			HttpSession session = request.getSession();
 			
 			try {
-				ArrayList<Staff> arraySt = Staff.getStaffList(((User)session.getAttribute("LoggedUser")).getId());
-				request.setAttribute("arraySt", arraySt);
+				User user = (User)session.getAttribute("LoggedUser");
+				if(user != null) {
+					if(user.getType() == 3) {
+						ArrayList<Staff> arraySt = Staff.getStaffList(user.getId());
+						request.setAttribute("arraySt", arraySt);
+					}
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
