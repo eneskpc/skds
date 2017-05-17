@@ -83,8 +83,8 @@ public class GetRequest extends HttpServlet {
 				request.setAttribute("rStatus",
 						"<div class='alert alert-danger'>Yanıtınız veritabanına kaydedilmedi. Sistem yöneticisi ile görüşün.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>");
 			}
-			doGet(request, response);
 		}
+		doGet(request, response);
 	}
 
 }

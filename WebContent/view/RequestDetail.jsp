@@ -48,45 +48,60 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					
-						<%if(loggedUser== null) { %>
-							<li><a class="btn btn-primary navbar-btn login">Giriş
-									Yap</a></li>
-							<li><a class="btn btn-info navbar-btn register">Kayıt Ol</a></li>
-							<%}else { %>
-							<% if(loggedUser.getType() == 1) {%>
-							<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-									<%} %>
-							<li class="dropdown"><a href="#"
-								class="dropdown-toggle btn btn-info navbar-btn"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false"><%=loggedUser.getEmail()%> <span
-									class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<%
-									if(loggedUser.getType() == 1) {
-									%>
-										<li><a href="/customerManager"><i class="fa fa-cog" aria-hidden="true"></i>
-												Taleplerim</a></li>
-										<li><a href="/customerSettings"><i class="fa fa-cog" aria-hidden="true"></i>
-												Hesabım</a></li>
-									<%} else if(loggedUser.getType() == 2) {%>
-									
-										<li><a href="/personelManager"><i class="fa fa-cog" aria-hidden="true"></i>
-												Taleplerim</a></li>
-										<li><a href="/personalSettings"><i class="fa fa-cog" aria-hidden="true"></i>
-												Hesabım</a></li>
-									<%} else if(loggedUser.getType() == 3) { %>
-										
-										<li><a href="/companyManager"><i class="fa fa-cog" aria-hidden="true"></i>
-												Taleplerim</a></li>
-										<li><a href="/companySettings"><i class="fa fa-cog" aria-hidden="true"></i>
-												Hesabım</a></li>	
-									<%} %>
-									<li><a href="/logout"><i class="fa fa-sign-out"
-											aria-hidden="true"></i> Çıkış</a></li>
-								</ul></li>
-								<%} %>
+
+					<%
+						if (loggedUser == null) {
+					%>
+					<li><a class="btn btn-primary navbar-btn login">Giriş Yap</a></li>
+					<li><a class="btn btn-info navbar-btn register">Kayıt Ol</a></li>
+					<%
+						} else {
+					%>
+					<%
+						if (loggedUser.getType() == 1) {
+					%>
+					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
+					<%
+						}
+					%>
+					<li class="dropdown"><a href="#"
+						class="dropdown-toggle btn btn-info navbar-btn"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false"><%=loggedUser.getEmail()%> <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<%
+								if (loggedUser.getType() == 1) {
+							%>
+							<li><a href="/customerManager"><i class="fa fa-cog"
+									aria-hidden="true"></i> Taleplerim</a></li>
+							<li><a href="/customerSettings"><i class="fa fa-cog"
+									aria-hidden="true"></i> Hesabım</a></li>
+							<%
+								} else if (loggedUser.getType() == 2) {
+							%>
+
+							<li><a href="/personelManager"><i class="fa fa-cog"
+									aria-hidden="true"></i> Taleplerim</a></li>
+							<li><a href="/personalSettings"><i class="fa fa-cog"
+									aria-hidden="true"></i> Hesabım</a></li>
+							<%
+								} else if (loggedUser.getType() == 3) {
+							%>
+
+							<li><a href="/companyManager"><i class="fa fa-cog"
+									aria-hidden="true"></i> Taleplerim</a></li>
+							<li><a href="/companySettings"><i class="fa fa-cog"
+									aria-hidden="true"></i> Hesabım</a></li>
+							<%
+								}
+							%>
+							<li><a href="/logout"><i class="fa fa-sign-out"
+									aria-hidden="true"></i> Çıkış</a></li>
+						</ul></li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -144,21 +159,24 @@
 					</div>
 					<div class="panel-body">
 						<%
-							if (loggedUser != null && rInfo != null) {
-								if (loggedUser.getId() == rInfo.getCustomer().getId()
+							if (loggedUser != null && rInfo != null && arraySt != null) {
+								if (rInfo.getCustomer().getId() == loggedUser.getId()
 										|| rInfo.getCompany().getId() == loggedUser.getId()
 										|| rInfo.getStaff().getId() == loggedUser.getId()) {
 									if (request.getAttribute("rStatus") != null)
 										out.print(request.getAttribute("rStatus"));
+									if (rInfo.getCompany().getId() == loggedUser.getId()) {
 						%>
 						<form class="form" method="post">
 							<input type="hidden" name="rId" value="<%=rInfo.getId()%>" />
 							<div class="form-group">
-								<select name="personelId" class="form-control" onchange="this.form.submit()">
-									<option value="0">Bir personel seçin veya taleplere siz cevap verin. İsterseniz daha sonra değiştirebilirsiniz.</option>
+								<select name="personelId" class="form-control"
+									onchange="this.form.submit()">
+									<option value="0">Bir personel seçin veya taleplere
+										siz cevap verin. İsterseniz daha sonra değiştirebilirsiniz.</option>
 									<%
 										if (arraySt != null)
-													for (Staff s : arraySt) {
+														for (Staff s : arraySt) {
 									%>
 									<option value="<%=s.getId()%>"><%=s.getName()%></option>
 									<%
@@ -167,6 +185,9 @@
 								</select>
 							</div>
 						</form>
+						<%
+							}
+						%>
 						<form class="form" method="post">
 							<input type="hidden" name="rId" value="<%=rInfo.getId()%>" />
 							<div class="form-group">
