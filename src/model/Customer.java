@@ -66,6 +66,7 @@ public class Customer extends User {
 				c.setHomeCity(rs.getInt("homeCity"));
 				customers.add(c);
 			}
+			return customers;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,6 +94,7 @@ public class Customer extends User {
 				c.setHomeCity(rs.getInt("homeCity"));
 				customers.add(c);
 			}
+			return customers;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -106,9 +108,9 @@ public class Customer extends User {
 			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
 			ps2.setInt(1, cID);
 			ResultSet rs = ps2.executeQuery();
-			
+			Customer c = null;
 			if(rs.next()){
-				Customer c = new Customer();
+				c = new Customer();
 				c.setId(rs.getInt("userID"));
 				c.setEmail(rs.getString("userEmail"));
 				c.setPassword(rs.getString("userPass"));
@@ -117,6 +119,7 @@ public class Customer extends User {
 				c.setBirthYear(rs.getInt("birthYear"));
 				c.setHomeCity(rs.getInt("homeCity"));
 			}
+			return c;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

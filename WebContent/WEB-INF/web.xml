@@ -4,11 +4,9 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>SKDS</display-name>
-
 	<session-config>
 		<session-timeout>300</session-timeout>
 	</session-config>
-
 	<servlet>
 		<servlet-name>home</servlet-name>
 		<jsp-file>/view/Home.jsp</jsp-file>
@@ -86,12 +84,20 @@
 		<servlet-class>controller.FileUploadHandler</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>RequestDetail</servlet-name>
+		<servlet-class>controller.GetRequest</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>LogoutUser</servlet-name>
 		<servlet-class>controller.LogoutUser</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LogoutUser</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RequestDetail</servlet-name>
+		<url-pattern>/requestDetail</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>FileUploadHandler</servlet-name>

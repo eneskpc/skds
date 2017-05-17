@@ -1,26 +1,30 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Response {
 	private int id;
-	private int previous;
+	private Response previous;
 	private String message;
-	private int requestId;
-	private int userId;
-	
+	private Request request;
+	private User user;
+
 	public Response() {
 		// // It is for create inheritance
 	}
-	
-	public Response(int id, int previous, String message, int requestId, int userId) {
+
+	public Response(int id, Response previous, String message, Request request, User user) {
 		super();
 		this.id = id;
 		this.previous = previous;
 		this.message = message;
-		this.requestId = requestId;
-		this.userId = userId;
+		this.request = request;
+		this.user = user;
 	}
 
-	
 	public int getId() {
 		return id;
 	}
@@ -29,11 +33,11 @@ public class Response {
 		this.id = id;
 	}
 
-	public int getPrevious() {
+	public Response getPrevious() {
 		return previous;
 	}
 
-	public void setPrevious(int previous) {
+	public void setPrevious(Response previous) {
 		this.previous = previous;
 	}
 
@@ -45,23 +49,79 @@ public class Response {
 		this.message = message;
 	}
 
-	public int getRequestId() {
-		return requestId;
+	public Request getRequest() {
+		return request;
 	}
 
-	public void setRequestId(int requestId) {
-		this.requestId = requestId;
+	public void setRequest(Request request) {
+		this.request = request;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-	
-	
-	
+
+	public static Response getResponse(int rID) {
+		try {
+			String sql2 = "SELECT response.id AS responseId,response.message,response.previous,response.isRead,request.id AS requestId,"
+					+ "user.id AS userId,user.email AS userEmail,user.type as userType"
+					+ " FROM response INNER JOIN request ON request.id = response.Request_id"
+					+ " INNER JOIN user ON user.id = response.User_id" + " WHERE response.id=?";
+			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
+			ps2.setInt(1, rID);
+			ResultSet rs = ps2.executeQuery();
+
+			Response r = null;
+			if (rs.next()) {
+				r = new Response();
+				r.setId(rs.getInt("responseId"));
+				r.setMessage(rs.getString("message"));
+				r.setPrevious(Response.getResponse(rs.getInt("previous")));
+				r.setRequest(Request.getRequest(rs.getInt("requestId")));
+				if (rs.getInt("userType") == 3)
+					r.setUser(Company.getCompany(rs.getInt("userId")));
+				else if (rs.getInt("userType") == 1)
+					r.setUser(Customer.getCustomer(rs.getInt("userId")));
+			}
+			return r;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static ArrayList<Response> getResponses(int reqId) {
+		try {
+			String sql2 = "SELECT response.id AS responseId,response.message,response.previous,response.isRead,request.id AS requestId,"
+					+ "user.id AS userId,user.email AS userEmail,user.type as userType"
+					+ " FROM response INNER JOIN request ON request.id = response.Request_id"
+					+ " INNER JOIN user ON user.id = response.User_id WHERE request.id=?";
+			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
+			ps2.setInt(1, reqId);
+			ResultSet rs = ps2.executeQuery();
+
+			ArrayList<Response> arrayR = new ArrayList<Response>();
+
+			while (rs.next()) {
+				Response r = new Response();
+				r.setId(rs.getInt("responseId"));
+				r.setMessage(rs.getString("message"));
+				r.setPrevious(Response.getResponse(rs.getInt("previous")));
+				r.setRequest(Request.getRequest(rs.getInt("requestId")));
+				if (rs.getInt("userType") == 3)
+					r.setUser(Company.getCompany(rs.getInt("userId")));
+				else if (rs.getInt("userType") == 1)
+					r.setUser(Customer.getCustomer(rs.getInt("userId")));
+			}
+			return arrayR;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

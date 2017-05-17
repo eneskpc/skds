@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,8 +43,8 @@ public class Request {
 		return date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(String date2) {
+		this.date = date2;
 	}
 
 	public User getCompany() {
@@ -58,7 +59,7 @@ public class Request {
 		this.detail = detail;
 	}
 
-	public User getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
@@ -90,6 +91,37 @@ public class Request {
 	 * @return ArrayList<Request>
 	 * @throws SQLException
 	 */
+	
+	
+	public static Request getRequest(int rID){
+		try {
+			String sql2 = "SELECT request.id AS requestId, request.title, request.date, request.detail,"
+					+ "request.Company_id AS companyId, request.Customer_id AS customerId, "
+					+"customer.name AS customerName, company.name AS companyName, company.imageUrl "
+					+"FROM request INNER JOIN customer ON request.Customer_id = customer.User_id "
+					+"INNER JOIN company ON request.Company_id = company.User_id WHERE request.id = ?";
+			PreparedStatement ps2 = MySQL.getConnection().prepareStatement(sql2);
+			ps2.setInt(1, rID);
+			ResultSet rs = ps2.executeQuery();
+			
+			Request r = null;
+			if(rs.next()){
+				r = new Request();
+				r.setCompany(Company.getCompany(rs.getInt("companyId")));
+				r.setCustomer(Customer.getCustomer(rs.getInt("customerId")));
+				r.setDate(new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate("date")));
+				r.setDetail(rs.getString("detail"));
+				r.setId(rID);
+				r.setTitle(rs.getString("title"));
+			}
+			return r;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	public static ArrayList<Request> getRequestList(int customerId) throws SQLException {
 		ArrayList<Request> list = new ArrayList<>();
 		

@@ -82,7 +82,7 @@
 									Taleplerim</a></li>
 							<li><a href="/customerSettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
-							<li><a href=""  id="btnLogout"><i class="fa fa-sign-out"
+							<li><a href="/logout"  id="btnLogout"><i class="fa fa-sign-out"
 									aria-hidden="true"></i> Çıkış</a></li>
 						</ul></li>
 				</ul>

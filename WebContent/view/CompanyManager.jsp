@@ -100,7 +100,7 @@
 									Taleplerim</a></li>
 							<li><a href="/companySettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
-							<li><a href=""><i class="fa fa-sign-out"
+							<li><a href="/logout"><i class="fa fa-sign-out"
 									aria-hidden="true"></i> Çıkış</a></li>
 						</ul></li>
 				</ul>

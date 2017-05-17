@@ -11,6 +11,9 @@ $(document)
 					$(window).resize(function() {
 						footerMinLocation();
 					});
+					$("#content-field").resize(function() {
+						footerMinLocation();
+					});
 					var modalLoading = '<div class="loading"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>';
 					$(document).on('click', '.login', function() {
 						$('#mainModal .modal-content').html(modalLoading);
