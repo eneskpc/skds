@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -9,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Request;
 import model.Response;
+import model.Staff;
+import model.User;
 
 @WebServlet("/GetRequest")
 public class GetRequest extends HttpServlet {
@@ -23,15 +27,24 @@ public class GetRequest extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		if (Integer.parseInt(request.getParameter("id"))>0) {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		if (Integer.parseInt(request.getParameter("id")) > 0) {
 			Request r = Request.getRequest(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("requestInfo", r);
-			
+
 			ArrayList<Response> arrayR = Response.getResponses(Integer.parseInt(request.getParameter("id")));
-			System.out.println(arrayR);
 			request.setAttribute("arrayR", arrayR);
 			
+			HttpSession session = request.getSession();
+			
+			try {
+				ArrayList<Staff> arraySt = Staff.getStaffList(((User)session.getAttribute("LoggedUser")).getId());
+				request.setAttribute("arraySt", arraySt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/RequestDetail.jsp");
 			dispatcher.forward(request, response);
 		} else {
@@ -41,7 +54,32 @@ public class GetRequest extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		if (request.getParameter("personelId") != null) {
+			int personalId = Integer.parseInt(request.getParameter("personelId"));
+			int reqId = Integer.parseInt(request.getParameter("rId"));
+			if (Request.assignStaff(personalId, reqId)) {
+				request.setAttribute("rStatus",
+						"<div class='alert alert-success'>Personel Değiştirildi!<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>");
+			} else {
+				request.setAttribute("rStatus",
+						"<div class='alert alert-danger'>Personel Değiştirilmedi. Sistem yöneticisi ile görüşün. Çözüm sürecine kadar talep ile siz ilgilenebilirsiniz.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>");
+			}
+		}
+		if (request.getParameter("comment") != null) {
+			HttpSession session = request.getSession();
+			Response r = new Response();
+			r.setMessage(request.getParameter("comment"));
+			r.setRequest(Request.getRequest(Integer.parseInt(request.getParameter("rId"))));
+			r.setUser((User) session.getAttribute("LoggedUser"));
+			if (r.setResponse()) {
+				request.setAttribute("rStatus",
+						"<div class='alert alert-success'>Yanıtınız Alındı!<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>");
+			} else {
+				request.setAttribute("rStatus",
+						"<div class='alert alert-danger'>Yanıtınız veritabanına kaydedilmedi. Sistem yöneticisi ile görüşün.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>");
+			}
+			doGet(request, response);
+		}
 	}
 
 }

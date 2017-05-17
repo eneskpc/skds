@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -207,5 +206,20 @@ public class Request {
 
 		return requestList;
 
+	}
+	
+	public static boolean assignStaff(int staffId, int reqId){
+		try {
+			String sql = "UPDATE request SET Staff_id = ? WHERE id = ?";
+			PreparedStatement pStatement = MySQL.getConnection().prepareStatement(sql);
+			pStatement.setInt(1, staffId);
+			pStatement.setInt(2, reqId);
+
+			if (pStatement.executeUpdate() > 0)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
