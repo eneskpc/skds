@@ -47,31 +47,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle btn btn-primary navbar-btn"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-bell"></i><span
-							class="badge">3</span></a>
-						<ul class="dropdown-menu">
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-						</ul></li>
+					
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-info navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -114,7 +90,7 @@
 									alt="Şirket Adı">
 							</div>
 							<div class="media-body">
-								<a class="media-heading" ng-bind="request.title"></a>
+								<a class="media-heading" href="/requestDetail?id={{request.id}}" ng-bind="request.title"></a>
 								<p ng-bind="request.detail"></p>
 							</div>
 						</div>

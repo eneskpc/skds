@@ -86,7 +86,7 @@ public class Company extends User {
 
 	public boolean saveCompany() {
 		if (this.saveUser()) {
-			String sql2 = "INSERT INTO company(name,detail,contactName,contactPhone,imageUrl,approved,User_id) VALUES(?,?,?,?,?,'0',?)";
+			String sql2 = "INSERT INTO company(name,detail,contactName,contactPhone,imageUrl,approved,User_id) VALUES(?,?,?,?,?,'1',?)";
 			PreparedStatement ps2;
 			try {
 				ps2 = MySQL.getConnection().prepareStatement(sql2);

@@ -50,55 +50,7 @@ if(loggedUser!=null) {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle btn btn-primary navbar-btn"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">WebMaster'a Yaz</a>
-						<ul class="dropdown-menu">
-							<li class="webmaster-chat">
-								<div class="panel panel-default">
-									<div class="panel-body msg_container_base">
-										<div class="row msg_container base_sent">
-											<div class="col-md-10 col-xs-10">
-												<div class="messages msg_sent">
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Morbi tempor erat ac arcu bibendum, sit amet euismod
-														felis porta</p>
-													<time datetime="2009-11-13T20:00">Yurtiçi Kargo •
-														Mesut • 51 dk</time>
-												</div>
-											</div>
-											<div class="col-md-2 col-xs-2 avatar">
-												<img src="assets/images/indir.svg" class=" img-responsive ">
-											</div>
-										</div>
-										<div class="row msg_container base_receive">
-											<div class="col-md-2 col-xs-2 avatar">
-												<img src="assets/images/indir.svg" class=" img-responsive ">
-											</div>
-											<div class="col-md-10 col-xs-10">
-												<div class="messages msg_receive">
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Morbi tempor erat ac arcu bibendum, sit amet euismod
-														felis porta</p>
-													<time datetime="2009-11-13T20:00">Timothy • 51 dk</time>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<div class="input-group">
-											<input id="btn-input" type="text"
-												class="form-control input-sm chat_input"
-												placeholder="Buraya mesajını yaz..." /> <span
-												class="input-group-btn">
-												<button class="btn btn-primary btn-sm" id="btn-chat">Gönder</button>
-											</span>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul></li>
+					
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-info navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"

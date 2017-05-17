@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.User"%>
 <%@page import="model.Company"%>
 <%@page import="model.Customer"%>
@@ -8,6 +9,7 @@
 <%
 	User loggedUser = (User) session.getAttribute("LoggedUser");
 	System.out.println(loggedUser);
+	ArrayList<Company> companyList = Company.getRandomCompany(4);
 %>
 <!doctype html>
 <html lang="tr">
@@ -49,86 +51,7 @@
 							<%}else { %>
 							<% if(loggedUser.getType() == 1) {%>
 							<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-							
-							<li class="dropdown"><a href="#"
-								class="dropdown-toggle btn btn-primary navbar-btn"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false"><i class="fa fa-bell"></i><span
-									class="badge">3</span></a>
-								<ul class="dropdown-menu">
-									<li class="notification-bar"><a href="">
-											<div class="media">
-												<div class="media-left">
-													<img class="media-object" src="assets/images/indir.svg" />
-												</div>
-												<div class="media-body">Burada bildirim eylemi
-													yazacaktır.</div>
-											</div>
-									</a></li>
-									<li class="notification-bar"><a href="">
-											<div class="media">
-												<div class="media-left">
-													<img class="media-object" src="assets/images/indir.svg" />
-												</div>
-												<div class="media-body">Burada bildirim eylemi
-													yazacaktır.</div>
-											</div>
-									</a></li>
-								</ul></li>
-								
-								<%} else if(loggedUser.getType() == 3) { %>
-							<li class="dropdown"><a href="#"
-								class="dropdown-toggle btn btn-primary navbar-btn"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">WebMaster'a Yaz</a>
-								<ul class="dropdown-menu">
-									<li class="webmaster-chat">
-										<div class="panel panel-default">
-											<div class="panel-body msg_container_base">
-												<div class="row msg_container base_sent">
-													<div class="col-md-10 col-xs-10">
-														<div class="messages msg_sent">
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-																elit. Morbi tempor erat ac arcu bibendum, sit amet
-																euismod felis porta</p>
-															<time datetime="2009-11-13T20:00">Yurtiçi Kargo •
-																Mesut • 51 dk</time>
-														</div>
-													</div>
-													<div class="col-md-2 col-xs-2 avatar">
-														<img src="assets/images/indir.svg"
-															class=" img-responsive ">
-													</div>
-												</div>
-												<div class="row msg_container base_receive">
-													<div class="col-md-2 col-xs-2 avatar">
-														<img src="assets/images/indir.svg"
-															class=" img-responsive ">
-													</div>
-													<div class="col-md-10 col-xs-10">
-														<div class="messages msg_receive">
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-																elit. Morbi tempor erat ac arcu bibendum, sit amet
-																euismod felis porta</p>
-															<time datetime="2009-11-13T20:00">Timothy • 51 dk</time>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="panel-footer">
-												<div class="input-group">
-													<input id="btn-input" type="text"
-														class="form-control input-sm chat_input"
-														placeholder="Buraya mesajını yaz..." /> <span
-														class="input-group-btn">
-														<button class="btn btn-primary btn-sm" id="btn-chat">Gönder</button>
-													</span>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul></li>
-									<%} %>
+								<%} %>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle btn btn-info navbar-btn"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -144,7 +67,7 @@
 												Hesabım</a></li>
 									<%} else if(loggedUser.getType() == 2) {%>
 									
-										<li><a href="/personelManager"><i class="fa fa-cog" aria-hidden="true"></i>
+										<li><a href="/personalManager"><i class="fa fa-cog" aria-hidden="true"></i>
 												Taleplerim</a></li>
 										<li><a href="/personalSettings"><i class="fa fa-cog" aria-hidden="true"></i>
 												Hesabım</a></li>
@@ -187,7 +110,7 @@
 									alt="Şirket Adı">
 							</div>
 							<div class="media-body">
-								<a class="media-heading" ng-bind="request.title"></a>
+								<a class="media-heading"  href="/requestDetail?id={{request.id}}" ng-bind="request.title"></a>
 								<p ng-bind="request.detail"></p>
 							</div>
 						</div>
@@ -207,7 +130,8 @@
 					<div class="panel-heading">
 						<div class="panel-title">Bizimle Çalışan Bazı Markalar</div>
 					</div>
-					<ul class="list-group ">
+										<ul class="list-group ">
+					<%for(Company company : companyList) { %>
 						<li class="list-group-item company-item">
 							<div class="media">
 								<div class="media-left">
@@ -215,32 +139,11 @@
 										alt="Şirket Adı">
 								</div>
 								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
+									<a class="media-heading"><%= company.getName() %></a>
 								</div>
 							</div>
 						</li>
-						<li class="list-group-item company-item">
-							<div class="media">
-								<div class="media-left">
-									<img class="media-object" src="assets/images/indir.svg"
-										alt="Şirket Adı">
-								</div>
-								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
-								</div>
-							</div>
-						</li>
-						<li class="list-group-item company-item">
-							<div class="media">
-								<div class="media-left">
-									<img class="media-object" src="assets/images/indir.svg"
-										alt="Şirket Adı">
-								</div>
-								<div class="media-body">
-									<a class="media-heading">Şirket Adı</a>
-								</div>
-							</div>
-						</li>
+						<%} %>
 					</ul>
 				</div>
 			</div>

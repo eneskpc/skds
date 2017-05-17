@@ -1,3 +1,4 @@
+<%@page import="model.Staff"%>
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -5,12 +6,15 @@
 <html lang="tr">
 <head>
 <%
+Staff staff = null;
 	User loggedUser = (User)session.getAttribute("LoggedUser");
 	if(loggedUser== null) {
 		response.sendRedirect("/");
 	} else {
 		if(loggedUser.getType() != 2) {
 			response.sendRedirect("/");
+		} else {
+			staff = Staff.getStaff(loggedUser.getId());
 		}
 	}
 %>
@@ -25,7 +29,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
+	
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -43,38 +47,12 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle btn btn-primary navbar-btn"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-bell"></i><span
-							class="badge">3</span></a>
-						<ul class="dropdown-menu">
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-						</ul></li>
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-info navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Hoşgeldin, {User} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/personelManager"><i class="fa fa-cog" aria-hidden="true"></i>
+							<li><a href="/personalManager"><i class="fa fa-cog" aria-hidden="true"></i>
 									Taleplerim</a></li>
 							<li><a href="/personalSettings"><i class="fa fa-cog" aria-hidden="true"></i>
 									Hesabım</a></li>
@@ -90,7 +68,7 @@
 			<div class="col-md-3">
 				<div class="profile-sidebar">
 					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">John Doe</div>
+						<div class="profile-usertitle-name"><%= staff == null ? staff.getName() : "" %></div>
 						<div class="profile-usertitle-job">Firma Personeli</div>
 					</div>
 					<div class="profile-usermenu">
@@ -110,12 +88,12 @@
 							<form action="" class="form">
 								<div class="form-group">
 									<label>Adı Soyadı</label> <input type="text"
-										class="form-control"
+										class="form-control" value="<%= staff == null ? staff.getName() : "" %>"
 										placeholder="Maksimum 50 karakter olacak şekilde girin" />
 								</div>
 								<div class="form-group">
 									<label>Email Adresi</label> <input type="text"
-										class="form-control"
+										class="form-control" value="<%= staff == null ? staff.getEmail() : "" %>"
 										placeholder="Maksimum 50 karakter olacak şekilde girin" />
 								</div>
 								<div class="form-group">

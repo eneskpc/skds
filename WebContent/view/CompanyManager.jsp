@@ -133,12 +133,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
+								<tr ng-repeat="item in data">
+									<td ng-bind="item.id">1</td>
+									<td><a class="media-heading"  href="/requestDetail?id={{item.id}}" ng-bind="item.title"></a></td>
+									<td ng-bind="item.staff.name"></td>
+									<td ng-bind="item.date"></td>
+									<td ng-if="item.responseCount == 0" class="text-danger">Yeni</td>
+									<td ng-if="item.responseCount != 0" class="text-success">Cevaplandı</td>
 								</tr>
 							</tbody>
 						</table>

@@ -84,4 +84,22 @@ public class Staff extends User {
 		
 	}
 	
+	public static Staff getStaff(int staffId) throws SQLException {
+		String sql = "SELECT staff.name, user.email"
+				+ " FROM staff INNER JOIN user ON user.id = staff.User_id WHERE staff.User_id =" + staffId;
+		
+		Statement statement = MySQL.getConnection().createStatement();
+		
+		ResultSet result = statement.executeQuery(sql);
+		
+		Staff staff = null;
+		
+		while(result.next()) {
+			staff = new Staff();
+			staff.setName(result.getString("name"));
+			staff.setEmail(result.getString("email"));
+			return staff;
+		}
+		return staff;
+	}
 }

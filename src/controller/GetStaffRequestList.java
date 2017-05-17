@@ -16,9 +16,7 @@ import com.google.gson.GsonBuilder;
 import model.Request;
 import model.User;
 
-public class GetCompanyRequestList extends HttpServlet {
-	
-	private static final long serialVersionUID = -5189958106236288981L;
+public class GetStaffRequestList extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,9 +29,7 @@ public class GetCompanyRequestList extends HttpServlet {
 		try {
 			if(session != null) {
 				User user = (User) session.getAttribute("LoggedUser");
-				System.out.println(user.getId());
-				ArrayList<Request> requestList = Request.getCompanyRequestList(user.getId());
-				System.out.println(user.getId() + " " + requestList);
+				ArrayList<Request> requestList = Request.getStaffRequestList(user.getId());
 				Gson gson = new GsonBuilder().create();
 				resp.getWriter().write(gson.toJson(requestList));
 			}
@@ -42,5 +38,5 @@ public class GetCompanyRequestList extends HttpServlet {
 		}
 	}
 		
-
+	
 }

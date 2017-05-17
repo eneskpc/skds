@@ -29,7 +29,6 @@ public class RegisterUser extends HttpServlet {
 
 		if (request.getParameter("userType").equals("customer")) {
 			try {
-				User user = User.getUsers(request.getParameter("email")).get(0);
 				if (request.getParameter("password").equals(request.getParameter("rePassword"))) {
 					Customer c = new Customer();
 					c.setName(request.getParameter("nameSurname"));
@@ -49,7 +48,6 @@ public class RegisterUser extends HttpServlet {
 			}
 		} else if (request.getParameter("userType").equals("company")) {
 			try {
-				User user = User.getUsers(request.getParameter("email")).get(0);
 				if (request.getParameter("password").equals(request.getParameter("passwordAgain"))) {
 					Company c = new Company();
 					c.setName(request.getParameter("companyName"));
@@ -68,9 +66,6 @@ public class RegisterUser extends HttpServlet {
 				response.getWriter()
 						.append("<div class='alert alert-danger'>Bu eposta ile kullanıcı kaydı yapılmıştır.</div>");
 			}
-		} else {
-			response.getWriter().append("<div class='alert alert-danger'>Bilinmeyen kullanıcı tipi! : "
-					+ request.getParameter("userType") + "</div>");
 		}
 	}
 

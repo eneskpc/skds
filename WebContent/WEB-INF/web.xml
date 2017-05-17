@@ -91,6 +91,10 @@
 		<servlet-name>LogoutUser</servlet-name>
 		<servlet-class>controller.LogoutUser</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>getStaffRequestList</servlet-name>
+		<servlet-class>controller.GetStaffRequestList</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LogoutUser</servlet-name>
 		<url-pattern>/logout</url-pattern>
@@ -174,5 +178,10 @@
 	<servlet-mapping>
 		<servlet-name>addAndRemoveStaff</servlet-name>
 		<url-pattern>/app/addAndRemoveStaff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		
+		<servlet-name>getStaffRequestList</servlet-name>
+		<url-pattern>/app/getStaffRequestList</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body ng-app="personalModule" ng-controller="personalController">
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
@@ -43,32 +43,6 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" class="create-request">Şikayette Bulunun !</a></li>
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle btn btn-primary navbar-btn"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-bell"></i><span
-							class="badge">3</span></a>
-						<ul class="dropdown-menu">
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-							<li class="notification-bar"><a href="">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" src="assets/images/indir.svg" />
-										</div>
-										<div class="media-body">Burada bildirim eylemi
-											yazacaktır.</div>
-									</div>
-							</a></li>
-						</ul></li>
 					<li class="dropdown"><a href="#"
 						class="dropdown-toggle btn btn-info navbar-btn"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -111,33 +85,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-warning">Cevaplandı</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Lorem Ipsum</td>
-									<td>Dolor Sit Amet</td>
-									<td>01.02.2017</td>
-									<td class="text-success">Yeni</td>
+								<tr ng-repeat="item in data">
+									<td ng-bind="item.id"></td>
+									<td><a class="media-heading"  href="/requestDetail?id={{item.id}}" ng-bind="item.title"></a></td>
+									<td ng-bind="item.customer.name"></td>
+									<td ng-bind="item.date"></td>
+									<td ng-if="item.responseCount == 0" class="text-danger">Yeni</td>
+									<td ng-if="item.responseCount != 0" class="text-success">Cevaplandı</td>
 								</tr>
 							</tbody>
 						</table>
@@ -158,7 +112,11 @@
 		</div>
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/angular.min.js">
+	</script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/script.js"></script>
+	<script type="text/javascript" src="/assets/js/angularScripts.js">
+	</script>
 </body>
 </html>
