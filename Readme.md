@@ -11,5 +11,6 @@ __Kullanılan Teknolojiler__
 - JDBC (Mysql)
 
 **Enes Kapucu - eneskpc - https://github.com/eneskpc
+
 **Rahman Beşir - rahmanbesir - https://github.com/rahmanbesir
 
